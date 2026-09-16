@@ -28,6 +28,10 @@ export default function AdminDashboardPage() {
           fetch("/api/videos?all=true"),
           fetch("/api/enquiries"),
         ]);
+        if (eRes.status === 401 || vRes.status === 401) {
+          window.location.href = "/admin/login?from=/admin";
+          return;
+        }
         if (vRes.ok) setVideos(await vRes.json());
         if (eRes.ok) setEnquiries(await eRes.json());
       } catch (err) {

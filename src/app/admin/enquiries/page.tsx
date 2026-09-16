@@ -13,7 +13,8 @@ import {
   Clock, 
   CheckCircle2, 
   AlertCircle,
-  FileText
+  FileText,
+  RefreshCw
 } from "lucide-react";
 import { Enquiry } from "@/lib/db";
 import { formatDate } from "@/lib/utils";
@@ -21,13 +22,19 @@ import { formatDate } from "@/lib/utils";
 export default function AdminEnquiriesPage() {
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [selectedEnquiry, setSelectedEnquiry] = useState<Enquiry | null>(null);
 
-  const fetchEnquiries = async () => {
+  const fetchEnquiries = async (silent = false) => {
+    if (!silent) setIsRefreshing(true);
     try {
       const res = await fetch("/api/enquiries");
+      if (res.status === 401) {
+        window.location.href = "/admin/login?from=/admin/enquiries";
+        return;
+      }
       if (res.ok) {
         const data = await res.json();
         setEnquiries(data);
@@ -36,11 +43,17 @@ export default function AdminEnquiriesPage() {
       console.error(err);
     } finally {
       setLoading(false);
+      setIsRefreshing(false);
     }
   };
 
   useEffect(() => {
     fetchEnquiries();
+    // Auto-poll every 5 seconds to catch new messages in real-time
+    const interval = setInterval(() => {
+      fetchEnquiries(true);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleStatusChange = async (id: string, newStatus: "NEW" | "IN PROGRESS" | "COMPLETED") => {
@@ -100,6 +113,21 @@ export default function AdminEnquiriesPage() {
         </div>
 
         <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>LIVE SYNC</span>
+          </div>
+
+          <button
+            onClick={() => fetchEnquiries(false)}
+            disabled={isRefreshing}
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-obsidian-900 border border-white/10 hover:border-gold-500/40 text-xs text-gray-200 transition disabled:opacity-50"
+            title="Refresh list now"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 text-gold-400 ${isRefreshing ? "animate-spin" : ""}`} />
+            <span>{isRefreshing ? "Refreshing..." : "Refresh"}</span>
+          </button>
+
           <span className="px-3.5 py-1.5 rounded-xl bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs font-semibold">
             {enquiries.length} Total Enquiries
           </span>
