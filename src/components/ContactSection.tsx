@@ -47,7 +47,14 @@ export default function ContactSection() {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to transmit dispatch message.");
+        let serverErr = "";
+        try {
+          const data = await res.json();
+          serverErr = data?.error || "";
+        } catch {
+          // ignore json parse error
+        }
+        throw new Error(serverErr || (res.status === 404 ? "Server endpoint not found. If this is a static site, please use direct WhatsApp/Email." : "Failed to transmit dispatch message."));
       }
 
       setStatus("success");
@@ -61,7 +68,7 @@ export default function ContactSection() {
       });
     } catch (err: any) {
       setStatus("error");
-      setErrorMessage(err.message || "Something went wrong. Please try again or email directly.");
+      setErrorMessage(err.message || "Something went wrong. Please try again or reach out directly.");
     }
   };
 
@@ -277,9 +284,22 @@ export default function ContactSection() {
 
                 {/* Error Banner */}
                 {status === "error" && (
-                  <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                    <span>{errorMessage}</span>
+                  <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                      <span>{errorMessage}</span>
+                    </div>
+                    <a
+                      href={`https://wa.me/916202842908?text=${encodeURIComponent(
+                        `Hi Piyush, from ${fullName || "Client"} (${formData.email || "Email"}): ${formData.message || "Project Inquiry"}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-medium text-[11px] uppercase tracking-wider transition-all self-start sm:self-auto flex-shrink-0"
+                    >
+                      <MessageSquare className="w-3 h-3" />
+                      <span>Send via WhatsApp</span>
+                    </a>
                   </div>
                 )}
 
