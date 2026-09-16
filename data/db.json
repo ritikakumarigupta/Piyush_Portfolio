@@ -1,0 +1,398 @@
+{
+  "videos": [
+    {
+      "id": "vid-1",
+      "title": "Aurabella Luxury Brand Launch",
+      "category": "Personal Brand",
+      "categoryBadge": "COMMERCIAL & BRAND",
+      "description": "High-converting luxury cosmetic commercial combining cinematic AI visuals, hyper-realistic macro textures, and refined motion pacing.",
+      "videoUrl": "/uploads/videos/aurabella_luxury_brand.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/aurabella_luxury_brand.jpg",
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Midjourney",
+        "Runway Gen-3",
+        "DaVinci Resolve"
+      ],
+      "order": 1,
+      "status": "published",
+      "views": "1.4M",
+      "duration": "45s",
+      "createdAt": "2026-09-11T07:26:10.722Z"
+    },
+    {
+      "id": "vid-2",
+      "title": "The Bald Lion — AI Character Reel",
+      "category": "AI Content",
+      "categoryBadge": "AI CHARACTER & ANIMATION",
+      "description": "Expressive AI character animation study featuring photorealistic lion anatomy, dynamic lighting, and punchy rhythmic editing.",
+      "videoUrl": "/uploads/videos/bald_lion_reel.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/bald_lion_reel.jpg",
+      "tools": [
+        "After Effects",
+        "Midjourney",
+        "Luma Dream Machine",
+        "Topaz Video AI"
+      ],
+      "order": 2,
+      "status": "published",
+      "views": "890K",
+      "duration": "32s",
+      "createdAt": "2026-09-11T07:26:10.724Z"
+    },
+    {
+      "id": "vid-3",
+      "title": "Age Transformation VFX Reel",
+      "category": "VFX",
+      "categoryBadge": "VFX & TRANSFORMATION",
+      "description": "Seamless age progression visual effects showcasing subtle facial morphing, skin texture aging, and color science grading.",
+      "videoUrl": "/uploads/videos/age_transformation_vfx.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/age_transformation_vfx.jpg",
+      "tools": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Premiere Pro",
+        "EBSynth"
+      ],
+      "order": 3,
+      "status": "published",
+      "views": "2.8M",
+      "duration": "28s",
+      "createdAt": "2026-09-11T07:26:10.724Z"
+    },
+    {
+      "id": "vid-4",
+      "title": "Mahadev Shiv Celestial VFX Concept",
+      "category": "AI Content",
+      "categoryBadge": "CINEMATIC CONCEPT",
+      "description": "Mythological celestial concept video featuring cosmic smoke simulations, divine particle glows, and majestic cinematic sound design.",
+      "videoUrl": "/uploads/videos/mahadev_shiv_concept.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/mahadev_shiv_concept.jpg",
+      "tools": [
+        "After Effects",
+        "Midjourney",
+        "Kling AI",
+        "Audition"
+      ],
+      "order": 4,
+      "status": "published",
+      "views": "3.5M",
+      "duration": "40s",
+      "createdAt": "2026-09-11T07:26:10.724Z"
+    },
+    {
+      "id": "vid-5",
+      "title": "Kingdom Momo Brand Commercial",
+      "category": "Personal Brand",
+      "categoryBadge": "FOOD & COMMERCIAL",
+      "description": "Sensory-rich food advertisement emphasizing steaming hot momos, sizzle sound design, fluid text callouts, and fast-paced hook editing.",
+      "videoUrl": "/uploads/videos/kingdom_momo_ad.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/kingdom_momo_ad.jpg",
+      "tools": [
+        "Premiere Pro",
+        "CapCut Pro",
+        "After Effects",
+        "Color Finale"
+      ],
+      "order": 5,
+      "status": "published",
+      "views": "650K",
+      "duration": "25s",
+      "createdAt": "2026-09-11T07:26:10.724Z"
+    },
+    {
+      "id": "vid-6",
+      "title": "Siwon Premium Brand Master Commercial",
+      "category": "Personal Brand",
+      "categoryBadge": "LUXURY BRANDING",
+      "description": "Minimalist luxury product commercial with fluid infinity-loop motion graphics, golden particle embers, and premium typographic hierarchy.",
+      "videoUrl": "/uploads/videos/siwon_premium_brand.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/siwon_premium_brand.jpg",
+      "tools": [
+        "Cinema 4D",
+        "After Effects",
+        "Premiere Pro"
+      ],
+      "order": 6,
+      "status": "published",
+      "views": "1.9M",
+      "duration": "50s",
+      "createdAt": "2026-09-11T07:26:10.724Z"
+    },
+    {
+      "id": "vid-7",
+      "title": "Epic Mahabharat Concept Scene",
+      "category": "Upcoming Project",
+      "categoryBadge": "UPCOMING CINEMATIC TRAILER",
+      "description": "Atmospheric cinematic teaser exploring ancient battlefields, mythical atmospheric lighting, and high-impact sound design.",
+      "videoUrl": "/uploads/videos/mahabharat_scene.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/mahabharat_scene.jpg",
+      "tools": [
+        "Unreal Engine",
+        "After Effects",
+        "Premiere Pro",
+        "AI Foley"
+      ],
+      "order": 7,
+      "status": "published",
+      "views": "1.1M",
+      "duration": "30s",
+      "createdAt": "2026-09-11T07:26:10.724Z"
+    },
+    {
+      "id": "vid-8",
+      "title": "SWION Cinematic Product Reveal",
+      "category": "Brand Commercial",
+      "categoryBadge": "COMMERCIAL & 3D",
+      "description": "Atmospheric product reveal commercial featuring dynamic light sweeps, macro texture passes, and sound design.",
+      "videoUrl": "/uploads/videos/swion_product_reveal.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/swion_product_reveal.jpg",
+      "tools": [
+        "DaVinci Resolve",
+        "Cinema 4D",
+        "After Effects",
+        "Fairlight"
+      ],
+      "tags": [
+        "DaVinci Resolve",
+        "Cinema 4D",
+        "After Effects",
+        "Fairlight"
+      ],
+      "order": 8,
+      "status": "published",
+      "views": "310K+",
+      "duration": "0:48",
+      "createdAt": "2026-09-11T13:00:00.000Z"
+    },
+    {
+      "id": "vid-9",
+      "title": "Kingdom Steam Momo Sizzling Ad",
+      "category": "Food Commercial",
+      "categoryBadge": "COMMERCIAL & COLOR",
+      "description": "Appetizing culinary commercial with slow-motion steam passes, punchy sound design, and color grading.",
+      "videoUrl": "/uploads/videos/kingdom_steam_momo.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/kingdom_steam_momo.jpg",
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve",
+        "Sound Design"
+      ],
+      "tags": [
+        "Premiere Pro",
+        "DaVinci Resolve",
+        "Sound Design"
+      ],
+      "order": 9,
+      "status": "published",
+      "views": "190K+",
+      "duration": "0:35",
+      "createdAt": "2026-09-11T13:00:00.000Z"
+    },
+    {
+      "id": "vid-10",
+      "title": "Aurabella Skincare AI Remix Reel",
+      "category": "AI Video & VFX",
+      "categoryBadge": "AI CINEMA",
+      "description": "Hybrid generative AI workflow merging live action cosmetic footage with Runway Gen-3 and Midjourney aesthetics.",
+      "videoUrl": "/uploads/videos/aurabella_ai_remix_reel.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/aurabella_ai_remix_reel.jpg",
+      "tools": [
+        "Runway Gen-3",
+        "After Effects",
+        "Midjourney v6",
+        "Topaz AI"
+      ],
+      "tags": [
+        "Runway Gen-3",
+        "After Effects",
+        "Midjourney v6",
+        "Topaz AI"
+      ],
+      "order": 10,
+      "status": "published",
+      "views": "540K+",
+      "duration": "0:42",
+      "createdAt": "2026-09-11T13:00:00.000Z"
+    },
+    {
+      "id": "vid-11",
+      "title": "Aurabella Social Growth Campaign",
+      "category": "Viral Social Reel",
+      "categoryBadge": "HIGH RETENTION",
+      "description": "Fast-paced kinetic short-form campaign engineered for maximum 3-second hook retention and conversion.",
+      "videoUrl": "/uploads/videos/aurabella_viral_campaign.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/aurabella_viral_campaign.jpg",
+      "tools": [
+        "Premiere Pro",
+        "Kinetic Motion",
+        "CapCut Pro"
+      ],
+      "tags": [
+        "Premiere Pro",
+        "Kinetic Motion",
+        "CapCut Pro"
+      ],
+      "order": 11,
+      "status": "published",
+      "views": "820K+",
+      "duration": "0:30",
+      "createdAt": "2026-09-11T13:00:00.000Z"
+    },
+    {
+      "id": "vid-12",
+      "title": "GMD High-Impact Leadership Reel",
+      "category": "Personal Brand",
+      "categoryBadge": "DOCUMENTARY",
+      "description": "Cinematic speech rhythm edit with orchestral rises, color balancing, and broadcast motion typography.",
+      "videoUrl": "/uploads/videos/gmd_modiji_speech_edit.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/gmd_modiji_speech_edit.jpg",
+      "tools": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Audio Mastering"
+      ],
+      "tags": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Audio Mastering"
+      ],
+      "order": 12,
+      "status": "published",
+      "views": "420K+",
+      "duration": "1:02",
+      "createdAt": "2026-09-11T13:00:00.000Z"
+    },
+    {
+      "id": "vid-13",
+      "title": "Pratik Creator Narrative Story",
+      "category": "Personal Brand",
+      "categoryBadge": "NARRATIVE CUT",
+      "description": "Engaging visual storytelling cut featuring multi-cam synchronization, jump cuts, and custom sound risers.",
+      "videoUrl": "/uploads/videos/pratik_creator_documentary.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/pratik_creator_documentary.jpg",
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve",
+        "After Effects"
+      ],
+      "tags": [
+        "Premiere Pro",
+        "DaVinci Resolve",
+        "After Effects"
+      ],
+      "order": 13,
+      "status": "published",
+      "views": "290K+",
+      "duration": "1:20",
+      "createdAt": "2026-09-11T13:00:00.000Z"
+    },
+    {
+      "id": "vid-14",
+      "title": "Mahabharat VFX Sequence 05",
+      "category": "3D Motion Graphics",
+      "categoryBadge": "VFX & 3D",
+      "description": "Mythological battle sequence featuring atmospheric volumetric clouds, particle sims, and color science.",
+      "videoUrl": "/uploads/videos/mahabharat_scene_05.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/mahabharat_scene_05.jpg",
+      "tools": [
+        "Blender 3D",
+        "After Effects",
+        "ComfyUI",
+        "Fairlight"
+      ],
+      "tags": [
+        "Blender 3D",
+        "After Effects",
+        "ComfyUI",
+        "Fairlight"
+      ],
+      "order": 14,
+      "status": "published",
+      "views": "670K+",
+      "duration": "0:55",
+      "createdAt": "2026-09-11T13:00:00.000Z"
+    },
+    {
+      "id": "vid-15",
+      "title": "Sea Water Sports Dynamic Action Outro",
+      "category": "Brand Commercial",
+      "categoryBadge": "LOGO ANIMATION",
+      "description": "High-energy kinetic logo animation with water splash dynamics, sound effects, and 4K export.",
+      "videoUrl": "/uploads/videos/sea_water_sports_motion.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/sea_water_sports_motion.jpg",
+      "tools": [
+        "After Effects",
+        "Blender",
+        "Sound Design"
+      ],
+      "tags": [
+        "After Effects",
+        "Blender",
+        "Sound Design"
+      ],
+      "order": 15,
+      "status": "published",
+      "views": "150K+",
+      "duration": "0:22",
+      "createdAt": "2026-09-11T13:00:00.000Z"
+    }
+  ],
+  "enquiries": [
+    {
+      "name": "Rohit Mehta",
+      "email": "rohit@studio.com",
+      "phone": "Not provided",
+      "projectType": "Brand Commercial / Reel",
+      "budget": "Custom",
+      "message": "Looking for high-retention commercial video editing for YouTube.",
+      "referenceLink": "",
+      "uploadedFile": "",
+      "id": "enq-1789131872801",
+      "status": "NEW",
+      "createdAt": "2026-09-11T13:04:32.801Z"
+    },
+    {
+      "name": "Aarav Kapoor",
+      "email": "aarav@agency.com",
+      "phone": "+91 9988776655",
+      "projectType": "Commercial Ad",
+      "budget": "₹25,000+",
+      "message": "Need an AI commercial video for our luxury beverage launch.",
+      "referenceLink": "",
+      "uploadedFile": "",
+      "id": "enq-1789113017077",
+      "status": "NEW",
+      "createdAt": "2026-09-11T07:50:17.077Z"
+    },
+    {
+      "name": "Test Client",
+      "email": "client@example.com",
+      "phone": "+91 99999 88888",
+      "projectType": "AI Video Content",
+      "budget": "?25,000+",
+      "message": "Looking for a high-end cinematic commercial reel for our upcoming product launch.",
+      "referenceLink": "",
+      "uploadedFile": "",
+      "id": "enq-1789111679968",
+      "status": "NEW",
+      "createdAt": "2026-09-11T07:27:59.968Z"
+    }
+  ],
+  "settings": {
+    "studioName": "KARMAYOG STUDIO",
+    "studioTagline": "Karmayog Production House",
+    "heroGreeting": "Hi there! 👋",
+    "heroHeading": "Thanks for messaging (KARMAYOG STUDIO).",
+    "heroDescription": "We specialize in professional Video Editing, Motion Graphics & AI-Powered Video Content — for YouTube, Reels, Ads & Corporate projects.\n\nShare your requirements here, and we'll get back to you shortly!",
+    "contactEmail": "karmayogistudio@gmail.com",
+    "phone": "+91 98765 43210",
+    "whatsapp": "+91 98765 43210",
+    "instagram": "https://instagram.com/karmayogistudio",
+    "youtube": "https://youtube.com/@karmayogistudio",
+    "footerContent": "© 2026 Karmayog Studio. All Rights Reserved. Transforming creative visions into high-impact cinematic video experiences.",
+    "logoUrl": "/assets/karmayogi-gold-logo.jpg"
+  },
+  "adminHash": "karmayogi2026"
+}

@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="100%">
+  <defs>
+    <!-- Luxury Gold Gradients -->
+    <linearGradient id="goldLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5C2"/>
+      <stop offset="25%" stop-color="#F2C94C"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="75%" stop-color="#996515"/>
+      <stop offset="100%" stop-color="#F7D070"/>
+    </linearGradient>
+
+    <linearGradient id="goldRadial" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFEAA7"/>
+      <stop offset="60%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#7B5208"/>
+    </linearGradient>
+
+    <linearGradient id="peacockTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2CD8D5"/>
+      <stop offset="40%" stop-color="#0E8A88"/>
+      <stop offset="80%" stop-color="#064E4D"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+
+    <linearGradient id="peacockEye" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1A2A6C"/>
+      <stop offset="45%" stop-color="#0F52BA"/>
+      <stop offset="70%" stop-color="#00A896"/>
+      <stop offset="85%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#FFEAA7"/>
+    </linearGradient>
+
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Group: Emblem (Wheel + Peacock Feathers) -->
+  <g transform="translate(120, 120)">
+    <!-- Ambient Gold Halo -->
+    <circle cx="0" cy="0" r="88" fill="none" stroke="url(#goldLight)" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.4"/>
+    
+    <!-- Outer Traditional Wheel (Chakra) Rim -->
+    <circle cx="0" cy="0" r="76" fill="none" stroke="url(#goldLight)" stroke-width="5" filter="url(#goldGlow)"/>
+    <circle cx="0" cy="0" r="68" fill="none" stroke="url(#goldRadial)" stroke-width="2"/>
+    <circle cx="0" cy="0" r="54" fill="none" stroke="url(#goldLight)" stroke-width="1.5" stroke-dasharray="2,3"/>
+    <circle cx="0" cy="0" r="26" fill="#0A0A0C" stroke="url(#goldLight)" stroke-width="3"/>
+    <circle cx="0" cy="0" r="10" fill="url(#goldLight)"/>
+
+    <!-- 16 Wheel Spokes / Rays -->
+    <g stroke="url(#goldLight)" stroke-width="2.5" stroke-linecap="round">
+      <line x1="0" y1="-68" x2="0" y2="-26"/>
+      <line x1="0" y1="26" x2="0" y2="68"/>
+      <line x1="-68" y1="0" x2="-26" y2="0"/>
+      <line x1="26" y1="0" x2="68" y2="0"/>
+      <line x1="-48" y1="-48" x2="-18" y2="-18"/>
+      <line x1="18" y1="18" x2="48" y2="48"/>
+      <line x1="-48" y1="48" x2="-18" y2="18"/>
+      <line x1="18" y1="-18" x2="48" y2="-48"/>
+
+      <line x1="-26" y1="-63" x2="-10" y2="-24"/>
+      <line x1="26" y1="63" x2="10" y2="24"/>
+      <line x1="-63" y1="-26" x2="-24" y2="-10"/>
+      <line x1="63" y1="26" x2="24" y2="10"/>
+      <line x1="-63" y1="26" x2="-24" y2="10"/>
+      <line x1="63" y1="-26" x2="24" y2="-10"/>
+      <line x1="-26" y1="63" x2="-10" y2="24"/>
+      <line x1="26" y1="-63" x2="10" y2="-24"/>
+    </g>
+
+    <!-- Ornate Beads on Rim -->
+    <g fill="url(#goldLight)">
+      <circle cx="0" cy="-76" r="3.5"/>
+      <circle cx="76" cy="0" r="3.5"/>
+      <circle cx="0" cy="76" r="3.5"/>
+      <circle cx="-76" cy="0" r="3.5"/>
+      <circle cx="53.7" cy="53.7" r="3.5"/>
+      <circle cx="-53.7" cy="53.7" r="3.5"/>
+      <circle cx="53.7" cy="-53.7" r="3.5"/>
+      <circle cx="-53.7" cy="-53.7" r="3.5"/>
+    </g>
+
+    <!-- Peacock Feather (Mor Pankh) rising elegantly -->
+    <g transform="translate(10, -32) rotate(22) scale(0.95)">
+      <!-- Quill Stem -->
+      <path d="M-10,40 Q-5,-10 15,-65 Q25,-85 30,-98" fill="none" stroke="url(#goldLight)" stroke-width="3" stroke-linecap="round"/>
+      
+      <!-- Outer Feather Fan Barbs -->
+      <path d="M15,-65 C-25,-80 -10,-125 30,-128 C70,-125 80,-80 40,-65 Z" fill="none" stroke="url(#goldLight)" stroke-width="2.5" opacity="0.9"/>
+      <path d="M18,-70 C-12,-85 2,-115 30,-120 C58,-115 72,-85 42,-70 Z" fill="url(#peacockTeal)" opacity="0.85"/>
+      
+      <!-- Peacock Eye (Chandrika) Layers -->
+      <ellipse cx="30" cy="-92" rx="20" ry="24" fill="url(#goldRadial)"/>
+      <ellipse cx="30" cy="-92" rx="14" ry="17" fill="url(#peacockTeal)"/>
+      <ellipse cx="30" cy="-90" rx="9" ry="11" fill="url(#peacockEye)"/>
+      <ellipse cx="32" cy="-88" rx="4" ry="5" fill="#FFE57F"/>
+      
+      <!-- Delicate Radiating Barbs -->
+      <path d="M22,-118 Q5,-130 0,-140 M30,-120 Q30,-138 32,-148 M38,-118 Q55,-130 65,-140 M10,-95 Q-15,-100 -25,-105 M50,-95 Q75,-100 85,-105" 
+            fill="none" stroke="url(#goldLight)" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Typography Group -->
+  <g transform="translate(250, 0)">
+    <!-- Hindi: कर्मयोगी in regal golden Devanagari typography -->
+    <text x="0" y="98" font-family="'Noto Serif Devanagari', 'Yatra One', 'Rozha One', 'Cinzel', serif" font-weight="800" font-size="64" fill="url(#goldLight)" letter-spacing="4" filter="url(#goldGlow)">
+      कर्मयोगी
+    </text>
+
+    <!-- English: STUDIO in luxury geometric sans -->
+    <text x="252" y="98" font-family="'Cinzel', 'Montserrat', 'Trajan Pro', sans-serif" font-weight="900" font-size="52" fill="url(#goldRadial)" letter-spacing="12">
+      STUDIO
+    </text>
+
+    <!-- Elegant Separator Line with Diamond Accent -->
+    <path d="M2,122 L510,122" stroke="url(#goldLight)" stroke-width="2.5" opacity="0.85"/>
+    <polygon points="256,116 262,122 256,128 250,122" fill="url(#goldLight)"/>
+
+    <!-- Subtitle: KARMAYOG PRODUCTION HOUSE -->
+    <text x="4" y="156" font-family="'Montserrat', 'Cinzel', sans-serif" font-weight="600" font-size="18.5" fill="#F5E6BE" letter-spacing="8" opacity="0.95">
+      KARMAYOG PRODUCTION HOUSE
+    </text>
+
+    <!-- Sub-tag: VIDEO EDITING • MOTION GRAPHICS • AI CONTENT -->
+    <text x="4" y="186" font-family="'Montserrat', sans-serif" font-weight="500" font-size="12" fill="#D4AF37" letter-spacing="4" opacity="0.8">
+      VIDEO EDITING  •  MOTION GRAPHICS  •  AI CINEMA
+    </text>
+  </g>
+</svg>

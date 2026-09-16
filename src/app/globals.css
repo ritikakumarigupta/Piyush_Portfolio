@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #EDEDED;
+  --bloom-intensity: 0.75;
+  --bloom-blur: 85px;
+  --bloom-opacity: 0.85;
+  --bloom-duration: 3.8s;
+  --bloom-fade-in: 0.8s;
+  --bloom-fade-out: 1.2s;
+  --bloom-blend: screen;
+}
+
+@layer base {
+  body {
+    background-color: #0A0A0A;
+    color: #EDEDED;
+    font-family: var(--font-sans, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    selection-background-color: #ffffff;
+    selection-color: #000000;
+  }
+}
+
+/* Monospace font styling for // labels */
+.font-mono-code {
+  font-family: var(--font-mono, "JetBrains Mono", "Space Mono", monospace);
+}
+
+/* Glassmorphism & Outer Area White Bloom System */
+.spotlight-card {
+  position: relative;
+  background: rgba(18, 18, 18, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: visible !important;
+}
+
+/* OUTSIDE AREA Glow/Bloom Light Effect (Extends beyond boundaries without covering inner content) */
+.spotlight-card::before,
+.outer-bloom-container::before {
+  content: "";
+  position: absolute;
+  inset: -18px; /* Extends outside boundaries */
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 55%, transparent 80%);
+  filter: blur(32px); /* Soft diffused edge */
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: -1; /* Placed behind the glass surface */
+  animation: movingPulseGlow 6s ease-in-out infinite alternate;
+  transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+  will-change: transform, opacity;
+}
+
+.spotlight-card:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.25) !important;
+}
+
+.spotlight-card:hover::before,
+.outer-bloom-container:hover::before {
+  opacity: 1;
+  filter: blur(40px);
+  transform: scale(1.04);
+}
+
+.glass-panel {
+  background: rgba(16, 16, 16, 0.72) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Top Spotlight Halo */
+.top-spotlight {
+  background: radial-gradient(ellipse 60% 50% at 50% -20%, rgba(255, 255, 255, 0.12), transparent 70%);
+}
+
+/* Eyebrow code pill tag */
+.eyebrow-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #A3A3A3;
+  text-transform: uppercase;
+}
+
+/* Infinite Marquee Animations */
+@keyframes marqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 32s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 32s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* White Light Bloom Effect System (Inspired by reference video) */
+@keyframes bloomBreathing {
+  0% {
+    transform: scale(0.92);
+    opacity: calc(var(--bloom-opacity, 0.85) * 0.55);
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: var(--bloom-opacity, 0.85);
+  }
+  100% {
+    transform: scale(0.92);
+    opacity: calc(var(--bloom-opacity, 0.85) * 0.55);
+  }
+}
+
+@keyframes bloomFlare {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.88);
+  }
+  40% {
+    opacity: var(--bloom-opacity, 0.85);
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: calc(var(--bloom-opacity, 0.85) * 0.6);
+    transform: scale(1);
+  }
+}
+
+.white-bloom-glow {
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: var(--bloom-blend, screen);
+  filter: blur(var(--bloom-blur, 85px));
+  animation: bloomBreathing var(--bloom-duration, 3.8s) ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.white-bloom-flare {
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: var(--bloom-blend, screen);
+  filter: blur(calc(var(--bloom-blur, 85px) * 0.6));
+  animation: bloomFlare var(--bloom-fade-in, 0.8s) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Moving/Drifting Blurred Aura for All Video Cards & Containers */
+@keyframes movingAmbientBloom {
+  0% {
+    transform: translate(0, 0) scale(0.95);
+    opacity: 0.45;
+  }
+  33% {
+    transform: translate(25px, -15px) scale(1.08);
+    opacity: 0.85;
+  }
+  66% {
+    transform: translate(-20px, 18px) scale(1.02);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(0, 0) scale(0.95);
+    opacity: 0.45;
+  }
+}
+
+@keyframes movingPulseGlow {
+  0%, 100% {
+    transform: scale(0.96) translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.08) translateY(-8px);
+    opacity: 0.85;
+  }
+}
+
+.moving-bloom-aura {
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(45px);
+  animation: movingAmbientBloom 6.5s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.moving-card-aura {
+  position: absolute;
+  inset: -15px;
+  border-radius: 1.5rem;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 80%);
+  filter: blur(35px);
+  pointer-events: none;
+  z-index: -1;
+  animation: movingPulseGlow 5.5s ease-in-out infinite;
+  transition: opacity 0.5s ease;
+  will-change: transform, opacity;
+}
+
+.spotlight-card:hover .moving-card-aura {
+  opacity: 1;
+  filter: blur(45px);
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 55%, transparent 85%);
+}
+
+/* 3D Circular Orbit and Ring Animations */
+@keyframes circleSpinSlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes circleSpinReverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes circleFloatPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.06);
+    opacity: 1;
+  }
+}
+
+.animate-circle-spin {
+  animation: circleSpinSlow 20s linear infinite;
+}
+
+.animate-circle-spin-reverse {
+  animation: circleSpinReverse 28s linear infinite;
+}
+
+.animate-circle-pulse {
+  animation: circleFloatPulse 4s ease-in-out infinite;
+}
+
