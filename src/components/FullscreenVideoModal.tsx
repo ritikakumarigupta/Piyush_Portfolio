@@ -2,7 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { X, Play, Pause, Volume2, VolumeX, ChevronLeft, ChevronRight, Layers } from "lucide-react";
+import { 
+  X, 
+  Play, 
+  Pause, 
+  Volume2, 
+  VolumeX, 
+  ChevronLeft, 
+  ChevronRight, 
+  Layers, 
+  Maximize, 
+  Minimize, 
+  Maximize2,
+  Sparkles,
+  Gauge
+} from "lucide-react";
 import { VideoProject } from "@/lib/db";
 
 interface FullscreenVideoModalProps {
@@ -12,6 +26,8 @@ interface FullscreenVideoModalProps {
   onSelectVideo: (video: VideoProject) => void;
   logoUrl?: string;
 }
+
+const PLAYBACK_RATES = [1.0, 1.25, 1.5, 2.0, 0.75];
 
 export default function FullscreenVideoModal({
   video,
@@ -24,38 +40,68 @@ export default function FullscreenVideoModal({
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [progress, setProgress] = useState(0);
+  const [playbackRate, setPlaybackRate] = useState(1.0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showUnmuteHint, setShowUnmuteHint] = useState(false);
+
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        } else {
+          onClose();
+        }
+      }
       if (e.key === " ") {
         e.preventDefault();
         togglePlay();
       }
       if (e.key === "ArrowLeft") handlePrev();
       if (e.key === "ArrowRight") handleNext();
+      if (e.key === "f" || e.key === "F") toggleFullscreen();
+      if (e.key === "m" || e.key === "M") toggleMute();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [video]);
+  }, [video, isPlaying, isMuted]);
 
   useEffect(() => {
+    const handleFsChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", handleFsChange);
+    return () => document.removeEventListener("fullscreenchange", handleFsChange);
+  }, []);
+
+  // When active video changes, reset and play with audio
+  useEffect(() => {
     if (!videoRef.current) return;
-    videoRef.current.muted = isMuted;
-    videoRef.current.volume = volume;
-    if (isPlaying) {
-      videoRef.current.play().catch(() => {
-        if (!isMuted) {
+    const vid = videoRef.current;
+    vid.currentTime = 0;
+    vid.playbackRate = playbackRate;
+    vid.volume = volume;
+    vid.muted = isMuted;
+
+    const playPromise = vid.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsPlaying(true);
+          setShowUnmuteHint(false);
+        })
+        .catch(() => {
+          // Browser prevented unmuted autoplay, mute temporarily and show un-mute hint
+          vid.muted = true;
           setIsMuted(true);
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-            videoRef.current.play().catch(() => {});
-          }
-        }
-      });
+          setShowUnmuteHint(true);
+          vid.play().catch(() => {});
+        });
     }
-  }, [video, isPlaying, isMuted, volume]);
+  }, [video]);
 
   if (!video) return null;
 
@@ -89,6 +135,42 @@ export default function FullscreenVideoModal({
     const nextMuted = !isMuted;
     videoRef.current.muted = nextMuted;
     setIsMuted(nextMuted);
+    setShowUnmuteHint(false);
+    if (!nextMuted) {
+      const vol = volume > 0 ? volume : 1;
+      videoRef.current.volume = vol;
+      setVolume(vol);
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleEnableAudio = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = false;
+    videoRef.current.volume = 1;
+    setIsMuted(false);
+    setVolume(1);
+    setShowUnmuteHint(false);
+    videoRef.current.play().catch(() => {});
+  };
+
+  const cyclePlaybackRate = () => {
+    if (!videoRef.current) return;
+    const nextIdx = (PLAYBACK_RATES.indexOf(playbackRate) + 1) % PLAYBACK_RATES.length;
+    const nextRate = PLAYBACK_RATES[nextIdx];
+    videoRef.current.playbackRate = nextRate;
+    setPlaybackRate(nextRate);
+  };
+
+  const toggleFullscreen = () => {
+    const target = containerRef.current || videoRef.current;
+    if (!target) return;
+
+    if (!document.fullscreenElement) {
+      target.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
   };
 
   const handleTimeUpdate = () => {
@@ -106,31 +188,48 @@ export default function FullscreenVideoModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-2xl p-4 sm:p-6">
-      {/* Top Controls: Logo Watermark + Close Button */}
-      <div className="absolute top-4 inset-x-6 flex items-center justify-between z-50 pointer-events-auto">
+    <div 
+      ref={containerRef}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-2xl p-2 sm:p-6 overflow-y-auto"
+    >
+      {/* Top Controls: Logo Watermark + Fullscreen Toggle + Close Button */}
+      <div className="absolute top-4 inset-x-4 sm:inset-x-6 flex items-center justify-between z-50 pointer-events-auto">
         <div className="flex items-center gap-3">
-          <span className="font-archivo text-xl font-bold tracking-tight text-white">
+          <span className="font-archivo text-lg sm:text-xl font-bold tracking-tight text-white">
             Piyush<span className="text-emerald-400">.</span>
           </span>
-          <span className="px-3 py-1 rounded-full text-[11px] font-mono tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
-            // THEATRICAL PLAYBACK
+          <span className="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-mono tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 uppercase font-semibold">
+            // LIVE THEATRICAL CINEMA
           </span>
         </div>
 
-        <button
-          onClick={onClose}
-          className="p-2.5 rounded-full bg-neutral-900 border border-white/20 hover:bg-white hover:text-black text-white transition-all duration-200 shadow-xl"
-          title="Close Modal (Esc)"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Top Fullscreen Toggle Button (Matching user screenshot) */}
+          <button
+            onClick={toggleFullscreen}
+            className="p-2 sm:p-2.5 rounded-full bg-neutral-900 border border-white/20 hover:bg-white hover:text-black text-white transition-all duration-200 shadow-xl"
+            title={isFullscreen ? "Exit Fullscreen (F)" : "Enter Fullscreen (F)"}
+          >
+            {isFullscreen ? <Minimize className="w-4 h-4 sm:w-5 sm:h-5" /> : <Maximize className="w-4 h-4 sm:w-5 sm:h-5" />}
+          </button>
+
+          {/* Close Modal Button */}
+          <button
+            onClick={onClose}
+            className="p-2 sm:p-2.5 rounded-full bg-neutral-900 border border-white/20 hover:bg-white hover:text-black text-white transition-all duration-200 shadow-xl"
+            title="Close Modal (Esc)"
+          >
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+        </div>
       </div>
 
       {/* Main Cinema Content Container */}
-      <div className="relative w-full max-w-6xl max-h-[90vh] flex flex-col lg:flex-row items-center justify-center gap-6 mt-10">
+      <div className="relative w-full max-w-6xl max-h-[92vh] flex flex-col lg:flex-row items-center justify-center gap-6 mt-12 sm:mt-10">
+        
         {/* VIDEO DISPLAY AREA */}
-        <div className="relative w-full lg:flex-1 aspect-video rounded-2xl overflow-hidden bg-black border border-white/15 shadow-2xl group">
+        <div className="relative w-full lg:flex-1 max-h-[80vh] flex items-center justify-center rounded-2xl overflow-hidden bg-black border border-white/15 shadow-2xl group">
+          
           {/* Theatrical Cinematic Moving White Bloom Halo around Video */}
           <div
             className="absolute -inset-10 sm:-inset-16 rounded-3xl bg-radial from-white/[0.3] via-white/[0.09] to-transparent filter blur-3xl pointer-events-none -z-10"
@@ -148,20 +247,42 @@ export default function FullscreenVideoModal({
             loop
             onTimeUpdate={handleTimeUpdate}
             onClick={togglePlay}
-            className="w-full h-full object-contain cursor-pointer"
+            className="w-full max-h-[75vh] object-contain cursor-pointer bg-black"
           />
 
-          {/* Sound & Play/Pause Controls Bar */}
-          <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/95 via-black/50 to-transparent flex items-center justify-between z-30 opacity-90 group-hover:opacity-100 transition-opacity">
-            <div className="flex items-center gap-3 sm:gap-4">
+          {/* Unmute Prompt Banner if autoplay was muted by browser */}
+          {showUnmuteHint && (
+            <button
+              onClick={handleEnableAudio}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-3 rounded-full bg-black/85 border border-emerald-400 text-white font-mono text-xs flex items-center gap-2.5 shadow-2xl backdrop-blur-md hover:scale-105 active:scale-95 transition-all z-40 animate-bounce"
+            >
+              <Volume2 className="w-4 h-4 text-emerald-400 animate-pulse" />
+              <span className="font-bold text-emerald-300 uppercase tracking-wider">Tap To Play With Audio 🔊</span>
+            </button>
+          )}
+
+          {/* Sound & Play/Pause Controls Bar (Matching exact user screenshot with 1.0x & sound) */}
+          <div className="absolute bottom-0 inset-x-0 p-3 sm:p-4 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex items-center justify-between z-30 opacity-95 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-2 sm:gap-4">
+              {/* Play / Pause */}
               <button
                 onClick={togglePlay}
-                className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-neutral-200 transition"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-neutral-200 transition"
+                title={isPlaying ? "Pause (Space)" : "Play (Space)"}
               >
                 {isPlaying ? <Pause className="w-4 h-4 fill-black" /> : <Play className="w-4 h-4 fill-black ml-0.5" />}
               </button>
 
-              {/* Sound Toggle */}
+              {/* Speed Controller 1.0x (Matches user screenshot) */}
+              <button
+                onClick={cyclePlaybackRate}
+                className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-white font-mono text-xs font-bold transition"
+                title="Change Playback Speed"
+              >
+                {playbackRate.toFixed(1)}x
+              </button>
+
+              {/* Sound Toggle (High Priority Fix: Sound ON/MUTED) */}
               <button
                 onClick={toggleMute}
                 className={`px-3 py-1.5 rounded-full transition flex items-center gap-2 text-xs font-mono font-medium ${
@@ -169,12 +290,13 @@ export default function FullscreenVideoModal({
                     ? "bg-red-500/20 text-red-300 border border-red-500/40"
                     : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
                 }`}
-                title={isMuted ? "Unmute Audio" : "Mute Audio"}
+                title={isMuted ? "Click to Unmute (M)" : "Mute (M)"}
               >
                 {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
-                <span>{isMuted ? "MUTED" : "SOUND ON"}</span>
+                <span className="font-bold">{isMuted ? "MUTED" : "SOUND ON"}</span>
               </button>
 
+              {/* Volume Slider */}
               <input
                 type="range"
                 min="0"
@@ -184,25 +306,41 @@ export default function FullscreenVideoModal({
                 onChange={(e) => {
                   const val = parseFloat(e.target.value);
                   setVolume(val);
-                  if (val > 0) setIsMuted(false);
+                  if (videoRef.current) {
+                    videoRef.current.volume = val;
+                    videoRef.current.muted = val === 0;
+                  }
+                  setIsMuted(val === 0);
+                  setShowUnmuteHint(false);
                 }}
-                className="w-20 accent-white hidden sm:inline-block cursor-pointer"
+                className="w-16 sm:w-20 accent-emerald-400 hidden sm:inline-block cursor-pointer"
+                title={`Volume: ${Math.round((isMuted ? 0 : volume) * 100)}%`}
               />
             </div>
 
+            {/* Right side of control bar: Video counter + Fullscreen button */}
             <div className="flex items-center gap-3">
               <span className="text-xs text-neutral-400 font-mono">
                 {String(currentIndex + 1).padStart(2, "0")} / {String(allVideos.length).padStart(2, "0")}
               </span>
+
+              {/* Fullscreen Button */}
+              <button
+                onClick={toggleFullscreen}
+                className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition"
+                title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+              >
+                {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 
           {/* Scrubber Progress Bar */}
           <div
-            className="absolute bottom-0 inset-x-0 h-1.5 bg-white/20 cursor-pointer z-40"
+            className="absolute bottom-0 inset-x-0 h-1.5 bg-white/20 cursor-pointer z-40 hover:h-2 transition-all"
             onClick={handleSeek}
           >
-            <div className="h-full bg-white" style={{ width: `${progress}%` }} />
+            <div className="h-full bg-emerald-400" style={{ width: `${progress}%` }} />
           </div>
         </div>
 

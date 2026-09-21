@@ -72,6 +72,23 @@ export default function ProjectsSection({ videos, onOpenModal }: ProjectsSection
   // Default fallback projects if DB is empty
   const displayProjects: VideoProject[] = videos.length > 0 ? videos : [
     {
+      id: "proj-piyush-reel",
+      title: "Piyush Kumar Gupta — Viral Authority Portfolio Reel",
+      category: "Personal Brand",
+      categoryBadge: "VIRAL REEL & AUTHORITY",
+      description: "Resume gets you shortlisted. Portfolio gets you hired. High-converting personal brand showcase featuring kinetic cuts, motion typography, and 3D screen animation.",
+      tools: ["After Effects", "Blender 3D", "Premiere Pro", "DaVinci Resolve"],
+      tags: ["After Effects", "Blender 3D", "Premiere Pro", "DaVinci Resolve"],
+      videoUrl: "/uploads/videos/swion_product_reveal.mp4",
+      thumbnailUrl: "/assets/piyush_portfolio_laptop_reel.png",
+      duration: "0:48",
+      views: "1.2M+",
+      featured: true,
+      order: 0,
+      status: "published",
+      createdAt: "2026-09-21",
+    },
+    {
       id: "proj-1",
       title: "Aurabella Luxury Skincare Commercial",
       category: "Personal Brand",

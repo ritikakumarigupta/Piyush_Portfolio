@@ -135,7 +135,7 @@ export default function AboutSection({
             {/* Paragraph Bio */}
             <div className="space-y-4">
               <h2 className="font-archivo text-7xl sm:text-5xl font-black uppercase tracking-tight text-white mb-12 sm:mb-16">
-             <span className="text-5xl  text-green-400 sm:text-5xl">Piyush Kumar Gupta</span>
+             <span className="text-5xl  text-white sm:text-5xl">Piyush Kumar Gupta</span>
               </h2>
               <p className="text-base sm:text-lg text-neutral-200 leading-relaxed font-normal">
                 3+ years turning raw footage and half-formed ideas into videos

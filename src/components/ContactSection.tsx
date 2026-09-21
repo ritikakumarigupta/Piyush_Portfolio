@@ -102,95 +102,10 @@ export default function ContactSection() {
           </p>
         </div>
 
-        {/* Two Columns: Studio Info Card on Left, Transmission Form on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          
-          {/* Left Column: Direct Studio Dispatch Channels (Replaced Code Card as requested) */}
-          <div className="lg:col-span-5 order-2 lg:order-1 relative">
-            <div className="spotlight-card rounded-2xl p-6 sm:p-8 space-y-6">
-              <div className="space-y-2">
-                <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">
-                  // OFFICIAL STUDIO CHANNELS
-                </span>
-                <h3 className="font-archivo text-xl sm:text-2xl font-bold uppercase text-white tracking-tight">
-                  Direct Production Dispatch
-                </h3>
-                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-sans">
-                  Have urgent footage or an active campaign ready to launch? Reach out directly via WhatsApp or email for instant turnaround quotes.
-                </p>
-              </div>
-
-              {/* Direct Quick Action Buttons */}
-              <div className="space-y-3 pt-2">
-                <a
-                  href="https://wa.me/916202842908?text=Hi%20Piyush,%20I%20would%20like%20to%20discuss%20a%20video%20project%20with%20Karmayogi%20Studio"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full flex items-center justify-between p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-white transition-all group shadow-md"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
-                      <MessageSquare className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="block text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">
-                        WhatsApp Fast Chat
-                      </span>
-                      <span className="text-xs text-neutral-300 font-mono">
-                        +91 6202842908 · Direct Studio Messenger
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono text-emerald-400 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
-                </a>
-
-                <a
-                  href="mailto:piyushkumargupta159@gmail.com?subject=Project%20Commission%20-%20Karmayogi%20Studio"
-                  className="w-full flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/30 text-white transition-all group shadow-md"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-neutral-300 group-hover:scale-110 transition-transform">
-                      <Mail className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <span className="block text-xs font-mono font-bold text-white uppercase tracking-wider">
-                        Official Email
-                      </span>
-                      <span className="text-xs text-neutral-300 font-mono">
-                        piyushkumargupta159@gmail.com
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono text-white group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
-                </a>
-              </div>
-
-              {/* Production Perks */}
-              <div className="pt-4 border-t border-white/10 space-y-2.5 text-xs font-mono text-neutral-400">
-                <div className="flex items-center gap-2 text-neutral-300">
-                  <Clock className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <span>Avg Response Time: &lt; 2 Hours</span>
-                </div>
-                <div className="flex items-center gap-2 text-neutral-300">
-                  <Zap className="w-4 h-4 text-amber-400 flex-shrink-0" />
-                  <span>Fast 24-48h First Cut Delivery</span>
-                </div>
-                <div className="flex items-center gap-2 text-neutral-300">
-                  <Shield className="w-4 h-4 text-sky-400 flex-shrink-0" />
-                  <span>100% Commercial &amp; Broadcast Rights</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Transmission Form */}
-          <div className="lg:col-span-7 order-1 lg:order-2 relative">
-            <div className="spotlight-card rounded-2xl p-6 sm:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Centered Transmission Form */}
+        <div className="max-w-3xl mx-auto relative">
+          <div className="spotlight-card rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl bg-[#0d0d0d]/80 backdrop-blur-xl">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 {/* First Name & Last Name (Two Columns) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -327,7 +242,6 @@ export default function ContactSection() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 }

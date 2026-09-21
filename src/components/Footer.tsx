@@ -39,10 +39,15 @@ export default function Footer({
                   />
                 </div>
                 <div>
-                  <span className="font-archivo text-lg sm:text-xl font-black text-white tracking-tight block">
-                    KARMAYOG  STUDIO
-                  </span>
-                  <span className="text-[10px] font-mono tracking-widest text-amber-400 uppercase font-bold">
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <span className="font-archivo text-lg sm:text-xl font-black text-white tracking-tight block">
+                      KARMAYOG STUDIO
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-mono text-emerald-300 uppercase font-bold tracking-wider">
+                      // DIRECT CONTACT &amp; CONNECT
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono tracking-widest text-amber-400 uppercase font-bold block mt-0.5">
                     Karmayog Production House
                   </span>
                 </div>

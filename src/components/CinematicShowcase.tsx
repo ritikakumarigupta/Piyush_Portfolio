@@ -70,15 +70,21 @@ export default function CinematicShowcase({
     vid.muted = isMuted;
     vid.volume = volume;
     if (isPlaying) {
-      vid.play().catch(() => {
-        vid.muted = true;
-        setIsMuted(true);
-        vid.play().catch(() => {});
-      });
+      const p = vid.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // If browser blocked unmuted autoplay on initial render
+          if (!isMuted) {
+            vid.muted = true;
+            setIsMuted(true);
+            vid.play().catch(() => {});
+          }
+        });
+      }
     } else {
       vid.pause();
     }
-  }, [currentIndex, isPlaying, isMuted, volume]);
+  }, [currentIndex, isPlaying]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -86,7 +92,7 @@ export default function CinematicShowcase({
       videoRef.current.pause();
       setIsPlaying(false);
     } else {
-      videoRef.current.play();
+      videoRef.current.play().catch(() => {});
       setIsPlaying(true);
     }
   };
@@ -97,7 +103,10 @@ export default function CinematicShowcase({
     videoRef.current.muted = nextMuted;
     setIsMuted(nextMuted);
     if (!nextMuted) {
-      videoRef.current.volume = volume;
+      const vol = volume > 0 ? volume : 1;
+      videoRef.current.volume = vol;
+      setVolume(vol);
+      videoRef.current.play().catch(() => {});
     }
   };
 

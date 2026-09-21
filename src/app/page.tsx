@@ -59,20 +59,20 @@ export default function HomePage() {
         logoUrl={logoUrl}
       />
 
-      {/* 4) Form Fill Section Moved Up (Requested: "foam fill wala section bhi upar add kar do") */}
-      <ContactSection />
-
-      {/* 5) Tech Stack: # TECHNICAL STACK Dual Infinite Horizontal Marquee (Pure Editing & AI Tools) */}
+      {/* 4) Tech Stack: # TECHNICAL STACK Dual Infinite Horizontal Marquee (Pure Editing & AI Tools) */}
       <TechStackSection />
 
-      {/* 6) Engineering Roadmap: // ENGINEERING ROADMAP 4 Execution Root Cards */}
+      {/* 5) Engineering Roadmap: // ENGINEERING ROADMAP 4 Execution Root Cards */}
       <RoadmapSection />
 
-      {/* 7) Projects: // PORTFOLIO WORK Horizontal Scrollable Cards with Video Player Modal */}
+      {/* 6) Projects: // PORTFOLIO WORK Horizontal Scrollable Cards with Video Player Modal */}
       <ProjectsSection
         videos={videos}
         onOpenModal={(video) => setActiveModalVideo(video)}
       />
+
+      {/* 7) Form Fill Section: Start A Project (Moved to bottom above Footer) */}
+      <ContactSection />
 
       {/* 8) Footer with Direct WhatsApp (+91 6202842908) and Email (piyushkumargupta159@gmail.com) */}
       <Footer logoUrl={logoUrl} studioName="KARMAYOG STUDIO" />

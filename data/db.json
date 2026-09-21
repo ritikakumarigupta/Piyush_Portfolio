@@ -1,6 +1,33 @@
 {
   "videos": [
     {
+      "id": "vid-piyush-reel",
+      "title": "Piyush Kumar Gupta — Viral Authority Portfolio Reel",
+      "category": "Personal Brand",
+      "categoryBadge": "VIRAL REEL & AUTHORITY",
+      "description": "Resume gets you shortlisted. Portfolio gets you hired. High-converting personal brand showcase featuring kinetic cuts, motion typography, and 3D screen animation.",
+      "videoUrl": "/uploads/videos/swion_product_reveal.mp4",
+      "thumbnailUrl": "/assets/piyush_portfolio_laptop_reel.png",
+      "tools": [
+        "After Effects",
+        "Blender 3D",
+        "Premiere Pro",
+        "DaVinci Resolve"
+      ],
+      "tags": [
+        "After Effects",
+        "Blender 3D",
+        "Premiere Pro",
+        "DaVinci Resolve"
+      ],
+      "order": 0,
+      "status": "published",
+      "views": "1.2M+",
+      "duration": "0:48",
+      "featured": true,
+      "createdAt": "2026-09-21T13:00:00.000Z"
+    },
+    {
       "id": "vid-1",
       "title": "Aurabella Luxury Brand Launch",
       "category": "Personal Brand",
@@ -15,7 +42,7 @@
         "Runway Gen-3",
         "DaVinci Resolve"
       ],
-      "order": 1,
+      "order": 2,
       "status": "published",
       "views": "1.4M",
       "duration": "45s",
@@ -35,7 +62,7 @@
         "Luma Dream Machine",
         "Topaz Video AI"
       ],
-      "order": 2,
+      "order": 3,
       "status": "published",
       "views": "890K",
       "duration": "32s",
@@ -55,7 +82,7 @@
         "Premiere Pro",
         "EBSynth"
       ],
-      "order": 3,
+      "order": 4,
       "status": "published",
       "views": "2.8M",
       "duration": "28s",
@@ -75,7 +102,7 @@
         "Kling AI",
         "Audition"
       ],
-      "order": 4,
+      "order": 5,
       "status": "published",
       "views": "3.5M",
       "duration": "40s",
@@ -95,7 +122,7 @@
         "After Effects",
         "Color Finale"
       ],
-      "order": 5,
+      "order": 6,
       "status": "published",
       "views": "650K",
       "duration": "25s",
@@ -114,7 +141,7 @@
         "After Effects",
         "Premiere Pro"
       ],
-      "order": 6,
+      "order": 7,
       "status": "published",
       "views": "1.9M",
       "duration": "50s",
@@ -134,7 +161,7 @@
         "Premiere Pro",
         "AI Foley"
       ],
-      "order": 7,
+      "order": 8,
       "status": "published",
       "views": "1.1M",
       "duration": "30s",
@@ -160,7 +187,7 @@
         "After Effects",
         "Fairlight"
       ],
-      "order": 8,
+      "order": 9,
       "status": "published",
       "views": "310K+",
       "duration": "0:48",
@@ -184,7 +211,7 @@
         "DaVinci Resolve",
         "Sound Design"
       ],
-      "order": 9,
+      "order": 10,
       "status": "published",
       "views": "190K+",
       "duration": "0:35",
@@ -210,7 +237,7 @@
         "Midjourney v6",
         "Topaz AI"
       ],
-      "order": 10,
+      "order": 11,
       "status": "published",
       "views": "540K+",
       "duration": "0:42",
@@ -234,7 +261,7 @@
         "Kinetic Motion",
         "CapCut Pro"
       ],
-      "order": 11,
+      "order": 12,
       "status": "published",
       "views": "820K+",
       "duration": "0:30",
@@ -258,7 +285,7 @@
         "After Effects",
         "Audio Mastering"
       ],
-      "order": 12,
+      "order": 13,
       "status": "published",
       "views": "420K+",
       "duration": "1:02",
@@ -282,7 +309,7 @@
         "DaVinci Resolve",
         "After Effects"
       ],
-      "order": 13,
+      "order": 14,
       "status": "published",
       "views": "290K+",
       "duration": "1:20",
@@ -308,7 +335,7 @@
         "ComfyUI",
         "Fairlight"
       ],
-      "order": 14,
+      "order": 15,
       "status": "published",
       "views": "670K+",
       "duration": "0:55",
@@ -332,54 +359,14 @@
         "Blender",
         "Sound Design"
       ],
-      "order": 15,
+      "order": 16,
       "status": "published",
       "views": "150K+",
       "duration": "0:22",
       "createdAt": "2026-09-11T13:00:00.000Z"
     }
   ],
-  "enquiries": [
-    {
-      "name": "Rohit Mehta",
-      "email": "rohit@studio.com",
-      "phone": "Not provided",
-      "projectType": "Brand Commercial / Reel",
-      "budget": "Custom",
-      "message": "Looking for high-retention commercial video editing for YouTube.",
-      "referenceLink": "",
-      "uploadedFile": "",
-      "id": "enq-1789131872801",
-      "status": "NEW",
-      "createdAt": "2026-09-11T13:04:32.801Z"
-    },
-    {
-      "name": "Aarav Kapoor",
-      "email": "aarav@agency.com",
-      "phone": "+91 9988776655",
-      "projectType": "Commercial Ad",
-      "budget": "₹25,000+",
-      "message": "Need an AI commercial video for our luxury beverage launch.",
-      "referenceLink": "",
-      "uploadedFile": "",
-      "id": "enq-1789113017077",
-      "status": "NEW",
-      "createdAt": "2026-09-11T07:50:17.077Z"
-    },
-    {
-      "name": "Test Client",
-      "email": "client@example.com",
-      "phone": "+91 99999 88888",
-      "projectType": "AI Video Content",
-      "budget": "?25,000+",
-      "message": "Looking for a high-end cinematic commercial reel for our upcoming product launch.",
-      "referenceLink": "",
-      "uploadedFile": "",
-      "id": "enq-1789111679968",
-      "status": "NEW",
-      "createdAt": "2026-09-11T07:27:59.968Z"
-    }
-  ],
+  "enquiries": [],
   "settings": {
     "studioName": "KARMAYOG STUDIO",
     "studioTagline": "Karmayog Production House",
