@@ -11,6 +11,7 @@ export default function AdminLoginPage() {
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -30,14 +31,15 @@ export default function AdminLoginPage() {
         throw new Error(data.error || "Login failed");
       }
 
-      router.push("/admin");
+      setLoginSuccess(true);
+      // Full document navigation ensures the browser transmits the fresh session cookie cleanly
+      window.location.href = "/admin";
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErrorMsg(err.message);
       } else {
         setErrorMsg("Authentication error");
       }
-    } finally {
       setLoading(false);
     }
   };
@@ -79,6 +81,16 @@ export default function AdminLoginPage() {
             </div>
           )}
 
+          {/* Credentials quick tip */}
+          <div className="mb-6 p-3 rounded-xl bg-gold-500/10 border border-gold-500/20 text-center space-y-1">
+            <p className="text-[11px] text-gold-300 font-medium">
+              Credentials Hint:
+            </p>
+            <p className="text-xs text-gold-400/90 font-mono">
+              Username: <span className="text-white font-bold">admin</span> &nbsp;|&nbsp; Password: <span className="text-white font-bold">karmayogi2026</span>
+            </p>
+          </div>
+
           <form onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-wider text-gray-300 font-medium">
@@ -100,7 +112,7 @@ export default function AdminLoginPage() {
                   Password
                 </label>
                 <span className="text-[10px] text-gold-400/80 font-mono">
-                  
+                  Default: karmayogi2026
                 </span>
               </div>
               <div className="relative">
@@ -118,10 +130,19 @@ export default function AdminLoginPage() {
 
             <button
               type="submit"
-              disabled={loading}
-              className="w-full py-3.5 rounded-full bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-obsidian-950 font-bold text-xs uppercase tracking-widest shadow-gold-md hover:shadow-gold-lg hover:scale-102 transition-all duration-300 disabled:opacity-50"
+              disabled={loading || loginSuccess}
+              className="w-full py-3.5 rounded-full bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-obsidian-950 font-bold text-xs uppercase tracking-widest shadow-gold-md hover:shadow-gold-lg hover:scale-102 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
             >
-              {loading ? "Authenticating..." : "Sign In to Dashboard"}
+              {loginSuccess ? (
+                <>
+                  <ShieldCheck className="w-4 h-4 text-obsidian-950 animate-bounce" />
+                  <span>Access Granted! Redirecting...</span>
+                </>
+              ) : loading ? (
+                "Authenticating..."
+              ) : (
+                "Sign In to Dashboard"
+              )}
             </button>
           </form>
 

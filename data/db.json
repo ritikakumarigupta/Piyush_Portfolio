@@ -1,33 +1,6 @@
 {
   "videos": [
     {
-      "id": "vid-piyush-reel",
-      "title": "Piyush Kumar Gupta — Viral Authority Portfolio Reel",
-      "category": "Personal Brand",
-      "categoryBadge": "VIRAL REEL & AUTHORITY",
-      "description": "Resume gets you shortlisted. Portfolio gets you hired. High-converting personal brand showcase featuring kinetic cuts, motion typography, and 3D screen animation.",
-      "videoUrl": "/uploads/videos/swion_product_reveal.mp4",
-      "thumbnailUrl": "/assets/piyush_portfolio_laptop_reel.png",
-      "tools": [
-        "After Effects",
-        "Blender 3D",
-        "Premiere Pro",
-        "DaVinci Resolve"
-      ],
-      "tags": [
-        "After Effects",
-        "Blender 3D",
-        "Premiere Pro",
-        "DaVinci Resolve"
-      ],
-      "order": 0,
-      "status": "published",
-      "views": "1.2M+",
-      "duration": "0:48",
-      "featured": true,
-      "createdAt": "2026-09-21T13:00:00.000Z"
-    },
-    {
       "id": "vid-1",
       "title": "Aurabella Luxury Brand Launch",
       "category": "Personal Brand",
