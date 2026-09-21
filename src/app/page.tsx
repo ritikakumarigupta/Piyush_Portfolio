@@ -11,9 +11,12 @@ import ProjectsSection from "@/components/ProjectsSection";
 import FullscreenVideoModal from "@/components/FullscreenVideoModal";
 import BloomFXController from "@/components/BloomFXController";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
+import CinematicIntroPreloader from "@/components/CinematicIntroPreloader";
 import { VideoProject, StudioSettings } from "@/lib/db";
 
 export default function HomePage() {
+  const [showPreloader, setShowPreloader] = useState(true);
   const [videos, setVideos] = useState<VideoProject[]>([]);
   const [settings, setSettings] = useState<StudioSettings | null>(null);
   const [activeModalVideo, setActiveModalVideo] = useState<VideoProject | null>(null);
@@ -44,6 +47,14 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-[#0A0A0A] text-[#EDEDED] relative overflow-hidden selection:bg-white selection:text-black">
+      {/* 0) Ultra-smooth 60/120fps Kinetic Inertia Scroll */}
+      <SmoothScroll />
+
+      {/* 0.5) Cinematic Intro Preloader (Resume gets you shortlisted. Portfolio gets you hired) */}
+      {showPreloader && (
+        <CinematicIntroPreloader onComplete={() => setShowPreloader(false)} />
+      )}
+
       {/* 1) Fixed Navbar with Prominent Logo */}
       <Navbar logoUrl={logoUrl} />
 
