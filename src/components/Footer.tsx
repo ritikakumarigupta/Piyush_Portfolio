@@ -180,9 +180,9 @@ export default function Footer({
 
         </div>
 
-        {/* HERO TYPOGRAPHY: "PIYUSH" (Matching Reference Image 2 Exactly) */}
-        <div className="w-full py-10 sm:py-14 md:py-20 text-center select-none overflow-hidden flex items-center justify-center">
-          <h1 className="font-archivo text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[130px] font-bold uppercase tracking-[0.06em] text-[#D8D8DC] drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] select-none">
+        {/* HERO TYPOGRAPHY: "PIYUSH" (Matching Reference Image 2 Exactly - Fully Contained, Never Overflows) */}
+        <div className="w-full py-10 sm:py-16 md:py-20 text-center select-none flex items-center justify-center">
+          <h1 className="font-archivo text-5xl sm:text-7xl md:text-8xl lg:text-[100px] xl:text-[115px] font-bold uppercase tracking-[0.06em] text-[#D8D8DC] drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] select-none max-w-full">
             PIYUSH
           </h1>
         </div>
