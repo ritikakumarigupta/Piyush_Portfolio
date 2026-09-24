@@ -180,9 +180,12 @@ export default function Footer({
 
         </div>
 
-        {/* MASSIVE GIGANTIC TYPOGRAPHY: "PIYUSH" (Light Gray Fade Aesthetic) */}
-        <div className="w-full py-6 sm:py-10 md:py-14 text-center select-none overflow-hidden flex items-center justify-center">
-          <h1 className="font-archivo text-[19vw] sm:text-[20vw] md:text-[21vw] lg:text-[22vw] leading-[0.8] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-[#fafafa] via-[#c4c4cc] to-[#63636e] drop-shadow-[0_4px_25px_rgba(255,255,255,0.12)] opacity-95 hover:opacity-100 hover:scale-[1.01] transition-all duration-500 cursor-default">
+        {/* MASSIVE GIGANTIC TYPOGRAPHY: "PIYUSH" (Exact Color Match from Reference Photo) */}
+        <div className="w-full py-6 sm:py-10 md:py-14 text-center select-none overflow-hidden flex items-center justify-center relative">
+          {/* Subtle Ambient Diffuse Halo Matching Photo */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-36 bg-[#9da0a6]/10 blur-3xl rounded-full pointer-events-none -z-10" />
+
+          <h1 className="font-archivo text-[19vw] sm:text-[20vw] md:text-[21vw] lg:text-[22vw] leading-[0.8] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-[#b8bac2] via-[#9ca0a6] to-[#73757d] drop-shadow-[0_0_35px_rgba(156,160,166,0.28)] hover:scale-[1.01] transition-transform duration-500 cursor-default">
             PIYUSH
           </h1>
         </div>
