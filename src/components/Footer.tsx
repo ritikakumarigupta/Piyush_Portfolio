@@ -180,12 +180,9 @@ export default function Footer({
 
         </div>
 
-        {/* MASSIVE GIGANTIC TYPOGRAPHY: "PIYUSH" (Exact Color Match from Reference Photo) */}
-        <div className="w-full py-6 sm:py-10 md:py-14 text-center select-none overflow-hidden flex items-center justify-center relative">
-          {/* Subtle Ambient Diffuse Halo Matching Photo */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-36 bg-[#9da0a6]/10 blur-3xl rounded-full pointer-events-none -z-10" />
-
-          <h1 className="font-archivo text-[19vw] sm:text-[20vw] md:text-[21vw] lg:text-[22vw] leading-[0.8] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-[#b8bac2] via-[#9ca0a6] to-[#73757d] drop-shadow-[0_0_35px_rgba(156,160,166,0.28)] hover:scale-[1.01] transition-transform duration-500 cursor-default">
+        {/* HERO TYPOGRAPHY: "PIYUSH" (Matching Reference Image 2 Exactly) */}
+        <div className="w-full py-10 sm:py-14 md:py-20 text-center select-none overflow-hidden flex items-center justify-center">
+          <h1 className="font-archivo text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[130px] font-bold uppercase tracking-[0.06em] text-[#D8D8DC] drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] select-none">
             PIYUSH
           </h1>
         </div>
