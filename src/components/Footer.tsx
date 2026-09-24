@@ -180,9 +180,9 @@ export default function Footer({
 
         </div>
 
-        {/* MASSIVE GIGANTIC TYPOGRAPHY: "PIYUSH" (Gray Fade Aesthetic) */}
+        {/* MASSIVE GIGANTIC TYPOGRAPHY: "PIYUSH" (Light Gray Fade Aesthetic) */}
         <div className="w-full py-6 sm:py-10 md:py-14 text-center select-none overflow-hidden flex items-center justify-center">
-          <h1 className="font-archivo text-[19vw] sm:text-[20vw] md:text-[21vw] lg:text-[22vw] leading-[0.8] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-[#d4d4d8] via-[#71717a] to-[#1f1f23]/60 drop-shadow-[0_8px_30px_rgba(0,0,0,0.8)] opacity-90 hover:opacity-100 hover:scale-[1.01] transition-all duration-500 cursor-default">
+          <h1 className="font-archivo text-[19vw] sm:text-[20vw] md:text-[21vw] lg:text-[22vw] leading-[0.8] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-[#fafafa] via-[#c4c4cc] to-[#63636e] drop-shadow-[0_4px_25px_rgba(255,255,255,0.12)] opacity-95 hover:opacity-100 hover:scale-[1.01] transition-all duration-500 cursor-default">
             PIYUSH
           </h1>
         </div>
