@@ -86,6 +86,39 @@ export default function CinematicShowcase({
     }
   }, [currentIndex, isPlaying]);
 
+  const unlockMobileAudio = () => {
+    try {
+      if (typeof window !== "undefined") {
+        const AudioContextClass =
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        if (AudioContextClass) {
+          const ctx = new AudioContextClass();
+          if (ctx.state === "suspended") {
+            ctx.resume().catch(() => {});
+          }
+        }
+      }
+    } catch {}
+  };
+
+  const handleVideoClick = () => {
+    if (!videoRef.current) return;
+    if (isMuted) {
+      // Tap video to immediately unmute on mobile
+      unlockMobileAudio();
+      videoRef.current.muted = false;
+      try {
+        videoRef.current.volume = 1;
+      } catch {}
+      setIsMuted(false);
+      setVolume(1);
+      videoRef.current.play().catch(() => {});
+    } else {
+      togglePlay();
+    }
+  };
+
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (isPlaying) {
@@ -99,13 +132,15 @@ export default function CinematicShowcase({
 
   const toggleMute = () => {
     if (!videoRef.current) return;
+    unlockMobileAudio();
     const nextMuted = !isMuted;
     videoRef.current.muted = nextMuted;
     setIsMuted(nextMuted);
     if (!nextMuted) {
-      const vol = volume > 0 ? volume : 1;
-      videoRef.current.volume = vol;
-      setVolume(vol);
+      try {
+        videoRef.current.volume = 1;
+      } catch {}
+      setVolume(1);
       videoRef.current.play().catch(() => {});
     }
   };
@@ -265,34 +300,42 @@ export default function CinematicShowcase({
                 src={currentVideo.videoUrl}
                 poster={currentVideo.thumbnailUrl}
                 playsInline
+                webkit-playsinline="true"
+                x5-playsinline="true"
+                crossOrigin="anonymous"
+                preload="auto"
                 loop
                 onTimeUpdate={handleTimeUpdate}
-                onClick={togglePlay}
+                onClick={handleVideoClick}
                 className="w-full h-full object-contain cursor-pointer"
               />
 
-              {/* Floating Sound Toggle Badge */}
+              {/* Floating Sound Toggle Badge with mobile touch support */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleMute();
                 }}
-                className={`absolute bottom-6 right-6 z-30 flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-xl border transition-all duration-300 ${
+                onTouchEnd={(e) => {
+                  e.stopPropagation();
+                  toggleMute();
+                }}
+                className={`absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-xl border transition-all duration-300 cursor-pointer ${
                   isMuted 
-                    ? "bg-slate-900/80 text-white border-white/20 hover:bg-slate-900" 
+                    ? "bg-amber-500/90 text-slate-950 border-amber-400 font-black shadow-[0_0_20px_rgba(245,158,11,0.6)] animate-pulse" 
                     : "bg-gold-500 text-slate-950 border-gold-400 font-bold shadow-lg hover:scale-105"
                 }`}
                 title={isMuted ? "Click to Enable Audio" : "Click to Mute"}
               >
                 {isMuted ? (
                   <>
-                    <VolumeX className="w-4 h-4 text-red-400" />
-                    <span className="text-xs font-bold tracking-wider uppercase">Sound Off</span>
+                    <Volume2 className="w-4 h-4 text-slate-950 animate-bounce" />
+                    <span className="text-xs font-black tracking-wider uppercase">Tap For Sound 🔊</span>
                   </>
                 ) : (
                   <>
                     <Volume2 className="w-4 h-4 text-slate-950 animate-bounce" />
-                    <span className="text-xs font-bold tracking-wider uppercase">Audio On</span>
+                    <span className="text-xs font-bold tracking-wider uppercase">Sound On</span>
                   </>
                 )}
               </button>

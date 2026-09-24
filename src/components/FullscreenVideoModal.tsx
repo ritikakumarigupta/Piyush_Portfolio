@@ -119,39 +119,74 @@ export default function FullscreenVideoModal({
     setProgress(0);
   };
 
+  const unlockMobileAudio = () => {
+    try {
+      if (typeof window !== "undefined") {
+        const AudioContextClass =
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        if (AudioContextClass) {
+          const ctx = new AudioContextClass();
+          if (ctx.state === "suspended") {
+            ctx.resume().catch(() => {});
+          }
+        }
+      }
+    } catch {}
+  };
+
+  const handleVideoClick = () => {
+    if (!videoRef.current) return;
+    if (isMuted) {
+      // If video is muted on phone, user tap should immediately unmute and play with sound!
+      handleEnableAudio();
+    } else {
+      togglePlay();
+    }
+  };
+
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (isPlaying) {
       videoRef.current.pause();
       setIsPlaying(false);
     } else {
-      videoRef.current.play();
+      videoRef.current.play().catch(() => {});
       setIsPlaying(true);
     }
   };
 
   const toggleMute = () => {
     if (!videoRef.current) return;
+    unlockMobileAudio();
     const nextMuted = !isMuted;
     videoRef.current.muted = nextMuted;
     setIsMuted(nextMuted);
     setShowUnmuteHint(false);
     if (!nextMuted) {
-      const vol = volume > 0 ? volume : 1;
-      videoRef.current.volume = vol;
-      setVolume(vol);
+      try {
+        videoRef.current.volume = 1;
+      } catch {}
+      setVolume(1);
       videoRef.current.play().catch(() => {});
     }
   };
 
-  const handleEnableAudio = () => {
+  const handleEnableAudio = (e?: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
     if (!videoRef.current) return;
-    videoRef.current.muted = false;
-    videoRef.current.volume = 1;
+    unlockMobileAudio();
+    const vid = videoRef.current;
+    vid.muted = false;
+    try {
+      vid.volume = 1;
+    } catch {}
     setIsMuted(false);
     setVolume(1);
     setShowUnmuteHint(false);
-    videoRef.current.play().catch(() => {});
+    vid.play().catch(() => {});
   };
 
   const cyclePlaybackRate = () => {
@@ -244,20 +279,25 @@ export default function FullscreenVideoModal({
             src={video.videoUrl}
             poster={video.thumbnailUrl}
             playsInline
+            webkit-playsinline="true"
+            x5-playsinline="true"
+            crossOrigin="anonymous"
+            preload="auto"
             loop
             onTimeUpdate={handleTimeUpdate}
-            onClick={togglePlay}
+            onClick={handleVideoClick}
             className="w-full max-h-[75vh] object-contain cursor-pointer bg-black"
           />
 
           {/* Unmute Prompt Banner if autoplay was muted by browser */}
-          {showUnmuteHint && (
+          {isMuted && (
             <button
               onClick={handleEnableAudio}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-3 rounded-full bg-black/85 border border-emerald-400 text-white font-mono text-xs flex items-center gap-2.5 shadow-2xl backdrop-blur-md hover:scale-105 active:scale-95 transition-all z-40 animate-bounce"
+              onTouchEnd={handleEnableAudio}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black font-mono text-xs sm:text-sm flex items-center gap-2.5 shadow-[0_0_35px_rgba(16,185,129,0.85)] backdrop-blur-md active:scale-95 transition-all z-40 border-2 border-white cursor-pointer animate-pulse"
             >
-              <Volume2 className="w-4 h-4 text-emerald-400 animate-pulse" />
-              <span className="font-bold text-emerald-300 uppercase tracking-wider">Tap To Play With Audio 🔊</span>
+              <Volume2 className="w-5 h-5 text-obsidian-950 animate-bounce" />
+              <span className="uppercase tracking-wider">TAP FOR SOUND 🔊</span>
             </button>
           )}
 
@@ -285,16 +325,24 @@ export default function FullscreenVideoModal({
               {/* Sound Toggle (High Priority Fix: Sound ON/MUTED) */}
               <button
                 onClick={toggleMute}
-                className={`px-3 py-1.5 rounded-full transition flex items-center gap-2 text-xs font-mono font-medium ${
+                onTouchEnd={(e) => {
+                  e.stopPropagation();
+                  toggleMute();
+                }}
+                className={`px-3 py-1.5 rounded-full transition flex items-center gap-2 text-xs font-mono font-medium cursor-pointer ${
                   isMuted
-                    ? "bg-red-500/20 text-red-300 border border-red-500/40"
+                    ? "bg-amber-500/25 text-amber-300 border border-amber-500/50 animate-pulse"
                     : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
                 }`}
                 title={isMuted ? "Click to Unmute (M)" : "Mute (M)"}
               >
-                {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
-                <span className="font-bold">{isMuted ? "MUTED" : "SOUND ON"}</span>
+                {isMuted ? <VolumeX className="w-4 h-4 text-amber-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
+                <span className="font-bold">{isMuted ? "TAP FOR SOUND 🔊" : "SOUND ON"}</span>
               </button>
+
+              <span className="hidden md:inline-block text-[10px] text-neutral-400 font-mono">
+                {isMuted ? "Audio muted — tap to unmute" : "Audio active (Check phone silent switch 🔕)"}
+              </span>
 
               {/* Volume Slider */}
               <input

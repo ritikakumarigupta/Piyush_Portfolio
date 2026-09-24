@@ -43,6 +43,31 @@ export default function HomePage() {
     loadData();
   }, []);
 
+  // Global mobile audio unlock on first user interaction
+  useEffect(() => {
+    const unlockGlobalAudio = () => {
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        if (AudioContextClass) {
+          const ctx = new AudioContextClass();
+          if (ctx.state === "suspended") {
+            ctx.resume().catch(() => {});
+          }
+        }
+      } catch {}
+    };
+
+    window.addEventListener("touchstart", unlockGlobalAudio, { passive: true, once: true });
+    window.addEventListener("click", unlockGlobalAudio, { passive: true, once: true });
+
+    return () => {
+      window.removeEventListener("touchstart", unlockGlobalAudio);
+      window.removeEventListener("click", unlockGlobalAudio);
+    };
+  }, []);
+
   const logoUrl = settings?.logoUrl || "/assets/karmayogi-logo.svg";
 
   return (
