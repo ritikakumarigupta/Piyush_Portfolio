@@ -85,6 +85,7 @@ export default function Footer({
               <span className="text-xs font-mono text-emerald-400 font-medium">
                 // Status: Open for Commission &amp; Remote Contracts 2026
               </span>
+              <h2 className="text-3xxl">PIYUSH</h2>
             </div>
           </div>
 
