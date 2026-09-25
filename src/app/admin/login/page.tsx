@@ -111,9 +111,7 @@ export default function AdminLoginPage() {
                 <label className="text-xs uppercase tracking-wider text-gray-300 font-medium">
                   Password
                 </label>
-                <span className="text-[10px] text-gold-400/80 font-mono">
-                  Default: karmayogi2026
-                </span>
+                
               </div>
               <div className="relative">
                 <input
