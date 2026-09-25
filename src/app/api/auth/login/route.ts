@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
     if (!db.verifyAdmin(password)) {
       return NextResponse.json(
-        { error: "Invalid password. Default password is 'karmayogi2026'" },
+        { error: "Invalid username or password. Please verify your credentials." },
         { status: 401 }
       );
     }

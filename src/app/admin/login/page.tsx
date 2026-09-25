@@ -8,7 +8,7 @@ import { Lock, ArrowLeft, AlertCircle, Key, ShieldCheck } from "lucide-react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [username, setUsername] = useState("admin");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -81,16 +81,6 @@ export default function AdminLoginPage() {
             </div>
           )}
 
-          {/* Credentials quick tip */}
-          <div className="mb-6 p-3 rounded-xl bg-gold-500/10 border border-gold-500/20 text-center space-y-1">
-            <p className="text-[11px] text-gold-300 font-medium">
-              Credentials Hint:
-            </p>
-            <p className="text-xs text-gold-400/90 font-mono">
-              Username: <span className="text-white font-bold">admin</span> &nbsp;|&nbsp; Password: <span className="text-white font-bold">karmayogi2026</span>
-            </p>
-          </div>
-
           <form onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-wider text-gray-300 font-medium">
@@ -101,7 +91,7 @@ export default function AdminLoginPage() {
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="admin"
+                placeholder="Enter username or email"
                 className="w-full px-4 py-3 rounded-xl bg-obsidian-900 border border-white/10 text-white text-sm focus:border-gold-500 focus:outline-none focus:ring-1 focus:ring-gold-500 transition"
               />
             </div>

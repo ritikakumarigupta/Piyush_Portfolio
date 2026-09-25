@@ -10,7 +10,7 @@ export default function ContactSection() {
     email: "",
     projectType: "Brand Commercial / Reel",
     message: "",
-    consent: false,
+    consent: true,
   });
 
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -22,12 +22,12 @@ export default function ContactSection() {
     e.preventDefault();
     if (!formData.email || !fullName || !formData.message) {
       setStatus("error");
-      setErrorMessage("Please complete all required fields before dispatching.");
+      setErrorMessage("Please complete all required fields (Name, Email, Message) before dispatching.");
       return;
     }
     if (!formData.consent) {
       setStatus("error");
-      setErrorMessage("Please accept the permission checkbox to proceed.");
+      setErrorMessage("Please accept the contact permission checkbox to proceed.");
       return;
     }
 
@@ -39,6 +39,7 @@ export default function ContactSection() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          name: fullName,
           clientName: fullName,
           email: formData.email,
           projectType: formData.projectType,
@@ -54,7 +55,7 @@ export default function ContactSection() {
         } catch {
           // ignore json parse error
         }
-        throw new Error(serverErr || (res.status === 404 ? "Server endpoint not found. If this is a static site, please use direct WhatsApp/Email." : "Failed to transmit dispatch message."));
+        throw new Error(serverErr || "Failed to transmit message. Please try WhatsApp or Email directly.");
       }
 
       setStatus("success");
@@ -64,11 +65,12 @@ export default function ContactSection() {
         email: "",
         projectType: "Brand Commercial / Reel",
         message: "",
-        consent: false,
+        consent: true,
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       setStatus("error");
-      setErrorMessage(err.message || "Something went wrong. Please try again or reach out directly.");
+      const msg = err instanceof Error ? err.message : "Something went wrong. Please try again or reach out directly.";
+      setErrorMessage(msg);
     }
   };
 

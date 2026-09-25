@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 
 export interface VideoProject {
   id: string;
@@ -55,8 +56,12 @@ interface DatabaseSchema {
   adminHash: string;
 }
 
-const DB_DIR = path.join(process.cwd(), 'data');
-const DB_FILE = path.join(DB_DIR, 'db.json');
+function getDbFilePath(): string {
+  if (process.env.VERCEL) {
+    return path.join(os.tmpdir(), 'karmayogi_db.json');
+  }
+  return path.join(process.cwd(), 'data', 'db.json');
+}
 
 const DEFAULT_VIDEOS: VideoProject[] = [
   {
@@ -201,51 +206,91 @@ const DEFAULT_SETTINGS: StudioSettings = {
 // Initial admin password hash for "karmayogi2026"
 const DEFAULT_ADMIN_HASH = "karmayogi2026";
 
+let memoryCache: DatabaseSchema | null = null;
+
 function ensureDb(): DatabaseSchema {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true });
+  if (memoryCache && memoryCache.videos && memoryCache.videos.length > 0) {
+    return memoryCache;
   }
 
-  if (!fs.existsSync(DB_FILE)) {
-    const initialData: DatabaseSchema = {
-      videos: DEFAULT_VIDEOS,
-      enquiries: [],
-      settings: DEFAULT_SETTINGS,
-      adminHash: DEFAULT_ADMIN_HASH,
-    };
-    fs.writeFileSync(DB_FILE, JSON.stringify(initialData, null, 2), 'utf-8');
-    return initialData;
-  }
+  const dbFile = getDbFilePath();
+  const dbDir = path.dirname(dbFile);
 
   try {
-    const raw = fs.readFileSync(DB_FILE, 'utf-8');
+    if (!fs.existsSync(dbFile)) {
+      // Seed from bundled data/db.json if available
+      const bundledPath = path.join(process.cwd(), 'data', 'db.json');
+      if (fs.existsSync(bundledPath)) {
+        const raw = fs.readFileSync(bundledPath, 'utf-8');
+        const parsed = JSON.parse(raw) as DatabaseSchema;
+        memoryCache = parsed;
+        try {
+          if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir, { recursive: true });
+          fs.writeFileSync(dbFile, JSON.stringify(parsed, null, 2), 'utf-8');
+        } catch {}
+        return parsed;
+      }
+
+      const initialData: DatabaseSchema = {
+        videos: DEFAULT_VIDEOS,
+        enquiries: [],
+        settings: DEFAULT_SETTINGS,
+        adminHash: DEFAULT_ADMIN_HASH,
+      };
+      memoryCache = initialData;
+      try {
+        if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir, { recursive: true });
+        fs.writeFileSync(dbFile, JSON.stringify(initialData, null, 2), 'utf-8');
+      } catch {}
+      return initialData;
+    }
+
+    const raw = fs.readFileSync(dbFile, 'utf-8');
     const data = JSON.parse(raw) as DatabaseSchema;
     if (!data.videos || data.videos.length === 0) {
       data.videos = DEFAULT_VIDEOS;
-      saveDb(data);
     }
     if (!data.settings) {
       data.settings = DEFAULT_SETTINGS;
-      saveDb(data);
     }
+    memoryCache = data;
     return data;
-  } catch {
+  } catch (err) {
+    console.warn("ensureDb read error, falling back:", err);
+    if (memoryCache) return memoryCache;
+
+    try {
+      const bundledPath = path.join(process.cwd(), 'data', 'db.json');
+      if (fs.existsSync(bundledPath)) {
+        const data = JSON.parse(fs.readFileSync(bundledPath, 'utf-8')) as DatabaseSchema;
+        memoryCache = data;
+        return data;
+      }
+    } catch {}
+
     const fallbackData: DatabaseSchema = {
       videos: DEFAULT_VIDEOS,
       enquiries: [],
       settings: DEFAULT_SETTINGS,
       adminHash: DEFAULT_ADMIN_HASH,
     };
-    fs.writeFileSync(DB_FILE, JSON.stringify(fallbackData, null, 2), 'utf-8');
+    memoryCache = fallbackData;
     return fallbackData;
   }
 }
 
 function saveDb(data: DatabaseSchema) {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true });
+  memoryCache = data;
+  try {
+    const dbFile = getDbFilePath();
+    const dbDir = path.dirname(dbFile);
+    if (!fs.existsSync(dbDir)) {
+      fs.mkdirSync(dbDir, { recursive: true });
+    }
+    fs.writeFileSync(dbFile, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (err) {
+    console.warn("saveDb filesystem write skipped or read-only, maintained in memory:", err);
   }
-  fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
 }
 
 export const db = {

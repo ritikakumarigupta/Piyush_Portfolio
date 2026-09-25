@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { isAdminAuthenticated } from "@/lib/auth";
 import fs from "fs";
 import path from "path";
+import os from "os";
 
 export async function GET() {
   const isAuthed = await isAdminAuthenticated();
@@ -60,16 +61,23 @@ export async function POST(req: Request) {
 
     let uploadedFilePath = "";
     if (file && file.size > 0) {
-      const uploadDir = path.join(process.cwd(), "public", "uploads", "files");
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true });
-      }
+      try {
+        const uploadDir = process.env.VERCEL
+          ? path.join(os.tmpdir(), "uploads", "files")
+          : path.join(process.cwd(), "public", "uploads", "files");
+        if (!fs.existsSync(uploadDir)) {
+          fs.mkdirSync(uploadDir, { recursive: true });
+        }
 
-      const safeName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
-      const filePath = path.join(uploadDir, safeName);
-      const buffer = Buffer.from(await file.arrayBuffer());
-      fs.writeFileSync(filePath, buffer);
-      uploadedFilePath = `/uploads/files/${safeName}`;
+        const safeName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
+        const filePath = path.join(uploadDir, safeName);
+        const buffer = Buffer.from(await file.arrayBuffer());
+        fs.writeFileSync(filePath, buffer);
+        uploadedFilePath = `/uploads/files/${safeName}`;
+      } catch (fileErr) {
+        console.warn("File saving skipped on serverless:", fileErr);
+        uploadedFilePath = `[Attached: ${file.name}]`;
+      }
     }
 
     const newEnquiry = db.createEnquiry({
@@ -85,6 +93,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(newEnquiry, { status: 201 });
   } catch (error) {
+    console.error("Failed to save enquiry:", error);
     return NextResponse.json({ error: "Failed to save enquiry" }, { status: 500 });
   }
 }
