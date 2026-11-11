@@ -11,7 +11,7 @@ interface AboutSectionProps {
 
 export default function AboutSection({
   portraitUrl = "/assets/portrait-hero-dark.jpg",
-  logoUrl = "/assets/karmayogi-logo.svg",
+  logoUrl = "/assets/piyush-profile-logo.png",
 }: AboutSectionProps) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);

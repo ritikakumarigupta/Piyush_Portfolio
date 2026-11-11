@@ -10,7 +10,7 @@ interface FooterProps {
 }
 
 export default function Footer({
-  logoUrl = "/assets/karmayog-logo.svg",
+  logoUrl = "/assets/piyush-profile-logo.png",
   studioName = "KARMAYOG STUDIO",
 }: FooterProps) {
   const scrollToTop = () => {
@@ -32,7 +32,7 @@ export default function Footer({
             <div className="flex items-center gap-3.5">
               <div className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-full overflow-hidden border-2 border-amber-400/40 shadow-[0_0_25px_rgba(212,175,55,0.4)] flex-shrink-0 bg-black">
                 <Image
-                  src={logoUrl || "/assets/karmayog-logo.svg"}
+                  src={logoUrl || "/assets/piyush-profile-logo.png"}
                   alt={studioName}
                   fill
                   className="object-cover"

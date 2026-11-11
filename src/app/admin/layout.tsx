@@ -47,8 +47,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       
       {/* Mobile Top Bar */}
       <div className="md:hidden flex items-center justify-between p-4 bg-obsidian-900 border-b border-white/10">
-        <div className="relative w-36 h-10">
-          <Image src="/assets/karmayogi-gold-logo.jpg" alt="Karmayog Studio" fill className="object-contain" />
+        <div className="flex items-center gap-3">
+          <div className="relative w-9 h-9 rounded-full overflow-hidden border border-gold-500/50">
+            <Image src="/assets/piyush-profile-logo.png" alt="Piyush Kumar Gupta" fill className="object-cover" />
+          </div>
+          <span className="font-archivo text-sm font-black text-white">PIYUSH GUPTA</span>
         </div>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -67,14 +70,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="space-y-8">
           {/* Logo */}
           <div className="hidden md:block space-y-2">
-            <div className="relative w-48 h-12">
-              <Image
-                src="/assets/karmayogi-gold-logo.jpg"
-                alt="Karmayog Studio"
-                fill
-                priority
-                className="object-contain object-left filter drop-shadow-[0_2px_8px_rgba(212,175,55,0.3)]"
-              />
+            <div className="flex items-center gap-3">
+              <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-gold-500/50 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                <Image
+                  src="/assets/piyush-profile-logo.png"
+                  alt="Piyush Kumar Gupta"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-archivo text-sm font-black tracking-wider text-white">
+                  PIYUSH GUPTA
+                </span>
+                <span className="text-[9px] font-mono text-gold-400 uppercase tracking-widest">
+                  PORTFOLIO CMS
+                </span>
+              </div>
             </div>
             <p className="text-[10px] text-gold-400 font-cinzel tracking-widest uppercase">
               Admin CMS Control Room

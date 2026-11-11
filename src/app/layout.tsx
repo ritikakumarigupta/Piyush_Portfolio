@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/assets/karmayog-logo.svg",
-    apple: "/assets/karmayog-logo.svg",
+    icon: "/assets/piyush-profile-logo.png",
+    apple: "/assets/piyush-profile-logo.png",
   },
 };
 

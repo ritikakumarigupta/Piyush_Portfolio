@@ -26,7 +26,7 @@ interface CinematicShowcaseProps {
 export default function CinematicShowcase({
   videos,
   onOpenModal,
-  logoUrl = "/assets/karmayogi-logo.svg",
+  logoUrl = "/assets/piyush-profile-logo.png",
 }: CinematicShowcaseProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);

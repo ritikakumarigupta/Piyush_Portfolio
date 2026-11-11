@@ -9,7 +9,7 @@ interface NavbarProps {
   logoUrl?: string;
 }
 
-export default function Navbar({ logoUrl = "/assets/karmayogi-logo.svg" }: NavbarProps) {
+export default function Navbar({ logoUrl = "/assets/piyush-profile-logo.png" }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -49,7 +49,7 @@ export default function Navbar({ logoUrl = "/assets/karmayogi-logo.svg" }: Navba
             {/* Logo size increased to h-14 w-14 (sm:h-16 sm:w-16) */}
             <div className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-full overflow-hidden border border-amber-400/50 shadow-[0_0_20px_rgba(212,175,55,0.5)] flex-shrink-0 bg-black">
               <Image
-                src={logoUrl || "/assets/karmayogi-gold-logo.jpg"}
+                src={logoUrl || "/assets/piyush-profile-logo.png"}
                 alt="Piyush Kumar Gupta"
                 fill
                 priority

@@ -158,8 +158,8 @@ export default function AdminSettingsPage() {
           {/* Logo Preview */}
           <div className="relative w-64 h-24 bg-obsidian-950 rounded-xl p-3 border border-gold-500/20 flex items-center justify-center">
             <Image
-              src={settings.logoUrl || "/assets/karmayogi-logo.svg"}
-              alt="Karmayog Studio Brand Logo"
+              src={settings.logoUrl || "/assets/piyush-profile-logo.png"}
+              alt="Piyush Kumar Gupta Brand Logo"
               fill
               className="object-contain p-2 filter drop-shadow-[0_2px_8px_rgba(212,175,55,0.4)]"
             />

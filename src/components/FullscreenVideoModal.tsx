@@ -34,7 +34,7 @@ export default function FullscreenVideoModal({
   allVideos,
   onClose,
   onSelectVideo,
-  logoUrl = "/assets/karmayogi-logo.svg",
+  logoUrl = "/assets/piyush-profile-logo.png",
 }: FullscreenVideoModalProps) {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);

@@ -53,13 +53,13 @@ export default function AdminLoginPage() {
         
         {/* Brand Logo */}
         <div className="text-center space-y-3">
-          <div className="relative w-64 h-16 mx-auto">
+          <div className="relative w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-gold-500/60 shadow-[0_0_25px_rgba(212,175,55,0.4)] bg-black">
             <Image
-              src="/assets/karmayogi-gold-logo.jpg"
-              alt="Karmayog Studio"
+              src="/assets/piyush-profile-logo.png"
+              alt="Piyush Kumar Gupta"
               fill
               priority
-              className="object-contain filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.4)]"
+              className="object-cover"
             />
           </div>
           <div className="space-y-1">
@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
               ADMIN CMS PORTAL
             </h2>
             <p className="text-xs text-gold-400/90 uppercase tracking-widest font-medium">
-              Portfolio &amp; Client Management
+              Piyush Kumar Gupta Portfolio
             </p>
           </div>
         </div>
