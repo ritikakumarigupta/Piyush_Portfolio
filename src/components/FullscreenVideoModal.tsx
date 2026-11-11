@@ -15,7 +15,8 @@ import {
   Minimize, 
   Maximize2,
   Sparkles,
-  Gauge
+  Gauge,
+  Loader2,
 } from "lucide-react";
 import { VideoProject } from "@/lib/db";
 
@@ -36,13 +37,14 @@ export default function FullscreenVideoModal({
   onSelectVideo,
   logoUrl = "/assets/piyush-profile-logo.png",
 }: FullscreenVideoModalProps) {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [progress, setProgress] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1.0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showUnmuteHint, setShowUnmuteHint] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -77,28 +79,40 @@ export default function FullscreenVideoModal({
     return () => document.removeEventListener("fullscreenchange", handleFsChange);
   }, []);
 
-  // When active video changes, reset and play with audio
+  // When active video changes, reset and attempt auto play with sound
   useEffect(() => {
     if (!videoRef.current) return;
     const vid = videoRef.current;
     vid.currentTime = 0;
     vid.playbackRate = playbackRate;
-    vid.volume = volume;
-    vid.muted = isMuted;
+    vid.volume = 1;
+    setIsBuffering(true);
 
+    // Try unmuted play first
+    vid.muted = false;
     const playPromise = vid.play();
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
           setIsPlaying(true);
+          setIsMuted(false);
+          setIsBuffering(false);
           setShowUnmuteHint(false);
         })
         .catch(() => {
-          // Browser prevented unmuted autoplay, mute temporarily and show un-mute hint
+          // If browser blocked unmuted autoplay (common on mobile), play muted so visual starts
           vid.muted = true;
           setIsMuted(true);
           setShowUnmuteHint(true);
-          vid.play().catch(() => {});
+          vid.play()
+            .then(() => {
+              setIsPlaying(true);
+              setIsBuffering(false);
+            })
+            .catch(() => {
+              setIsPlaying(false);
+              setIsBuffering(false);
+            });
         });
     }
   }, [video]);
@@ -137,9 +151,28 @@ export default function FullscreenVideoModal({
 
   const handleVideoClick = () => {
     if (!videoRef.current) return;
-    if (isMuted) {
-      // If video is muted on phone, user tap should immediately unmute and play with sound!
-      handleEnableAudio();
+    const vid = videoRef.current;
+    unlockMobileAudio();
+
+    if (vid.paused) {
+      vid.muted = false;
+      vid.volume = 1;
+      vid.play()
+        .then(() => {
+          setIsPlaying(true);
+          setIsMuted(false);
+          setShowUnmuteHint(false);
+        })
+        .catch(() => {
+          vid.muted = true;
+          setIsMuted(true);
+          vid.play().then(() => setIsPlaying(true)).catch(() => {});
+        });
+    } else if (vid.muted) {
+      vid.muted = false;
+      vid.volume = 1;
+      setIsMuted(false);
+      setShowUnmuteHint(false);
     } else {
       togglePlay();
     }
@@ -147,28 +180,33 @@ export default function FullscreenVideoModal({
 
   const togglePlay = () => {
     if (!videoRef.current) return;
-    if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
+    const vid = videoRef.current;
+    if (vid.paused) {
+      vid.play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {});
     } else {
-      videoRef.current.play().catch(() => {});
-      setIsPlaying(true);
+      vid.pause();
+      setIsPlaying(false);
     }
   };
 
   const toggleMute = () => {
     if (!videoRef.current) return;
+    const vid = videoRef.current;
     unlockMobileAudio();
-    const nextMuted = !isMuted;
-    videoRef.current.muted = nextMuted;
+    const nextMuted = !vid.muted;
+    vid.muted = nextMuted;
     setIsMuted(nextMuted);
     setShowUnmuteHint(false);
     if (!nextMuted) {
       try {
-        videoRef.current.volume = 1;
+        vid.volume = 1;
       } catch {}
       setVolume(1);
-      videoRef.current.play().catch(() => {});
+      if (vid.paused) {
+        vid.play().then(() => setIsPlaying(true)).catch(() => {});
+      }
     }
   };
 
@@ -186,7 +224,9 @@ export default function FullscreenVideoModal({
     setIsMuted(false);
     setVolume(1);
     setShowUnmuteHint(false);
-    vid.play().catch(() => {});
+    if (vid.paused) {
+      vid.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
   };
 
   const cyclePlaybackRate = () => {
@@ -281,22 +321,55 @@ export default function FullscreenVideoModal({
             playsInline
             webkit-playsinline="true"
             x5-playsinline="true"
-            crossOrigin="anonymous"
             preload="auto"
             loop
             onTimeUpdate={handleTimeUpdate}
+            onPlay={() => {
+              setIsPlaying(true);
+              setIsBuffering(false);
+            }}
+            onPause={() => setIsPlaying(false)}
+            onWaiting={() => setIsBuffering(true)}
+            onPlaying={() => {
+              setIsPlaying(true);
+              setIsBuffering(false);
+            }}
+            onCanPlay={() => setIsBuffering(false)}
+            onVolumeChange={() => {
+              if (videoRef.current) setIsMuted(videoRef.current.muted);
+            }}
             onClick={handleVideoClick}
             className="w-full max-h-[75vh] object-contain cursor-pointer bg-black"
           />
 
+          {/* Buffering Indicator */}
+          {isBuffering && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm z-30 pointer-events-none">
+              <Loader2 className="w-12 h-12 text-emerald-400 animate-spin mb-2" />
+              <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-widest">
+                Buffering Cinema Stream...
+              </span>
+            </div>
+          )}
+
+          {/* Large Center Play Button if paused */}
+          {!isPlaying && !isBuffering && (
+            <button
+              onClick={handleVideoClick}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-7 py-3.5 rounded-full bg-white text-black font-black font-mono text-xs sm:text-sm flex items-center gap-2.5 shadow-[0_0_35px_rgba(255,255,255,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 transition-all z-40 border-2 border-emerald-400 cursor-pointer animate-pulse"
+            >
+              <Play className="w-5 h-5 fill-black text-black" />
+              <span className="uppercase tracking-wider">TAP TO PLAY ▶</span>
+            </button>
+          )}
+
           {/* Unmute Prompt Banner if autoplay was muted by browser */}
-          {isMuted && (
+          {isMuted && isPlaying && !isBuffering && (
             <button
               onClick={handleEnableAudio}
-              onTouchEnd={handleEnableAudio}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black font-mono text-xs sm:text-sm flex items-center gap-2.5 shadow-[0_0_35px_rgba(16,185,129,0.85)] backdrop-blur-md active:scale-95 transition-all z-40 border-2 border-white cursor-pointer animate-pulse"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black font-mono text-xs sm:text-sm flex items-center gap-2.5 shadow-[0_0_35px_rgba(16,185,129,0.85)] backdrop-blur-md active:scale-95 transition-all z-40 border-2 border-white cursor-pointer animate-bounce"
             >
-              <Volume2 className="w-5 h-5 text-obsidian-950 animate-bounce" />
+              <Volume2 className="w-5 h-5 text-obsidian-950" />
               <span className="uppercase tracking-wider">TAP FOR SOUND 🔊</span>
             </button>
           )}

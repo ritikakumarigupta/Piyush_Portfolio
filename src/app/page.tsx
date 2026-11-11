@@ -67,7 +67,7 @@ export default function HomePage() {
     };
   }, []);
 
-  const logoUrl = settings?.logoUrl || "/assets/piyush-profile-logo.png";
+  const logoUrl = "/assets/piyush-avatar-2026.png";
 
   return (
     <main className="min-h-screen bg-[#0A0A0A] text-[#EDEDED] relative overflow-hidden selection:bg-white selection:text-black">

@@ -200,7 +200,7 @@ const DEFAULT_SETTINGS: StudioSettings = {
   instagram: "https://instagram.com/karmayogistudio",
   youtube: "https://youtube.com/@karmayogistudio",
   footerContent: "© 2026 Karmayog Studio. All Rights Reserved. Transforming creative visions into high-impact cinematic video experiences.",
-  logoUrl: "/assets/piyush-profile-logo.png",
+  logoUrl: "/assets/piyush-avatar-2026.png",
 };
 
 // Initial admin password hash for "karmayogi2026"
