@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import ContactSection from "@/components/ContactSection";
 import TechStackSection from "@/components/TechStackSection";
 import RoadmapSection from "@/components/RoadmapSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -107,10 +106,7 @@ export default function HomePage() {
         onOpenModal={(video) => setActiveModalVideo(video)}
       />
 
-      {/* 7) Form Fill Section: Start A Project (Moved to bottom above Footer) */}
-      <ContactSection />
-
-      {/* 8) Footer with Direct WhatsApp (+91 6202842908) and Email (piyushkumargupta159@gmail.com) */}
+      {/* 7) Footer with Direct WhatsApp (+91 6202842908) and Email (piyushkumargupta159@gmail.com) */}
       <Footer logoUrl={logoUrl} studioName="KARMAYOG STUDIO" />
 
       {/* 9) Floating Real-time Cinematic Bloom FX Controller */}

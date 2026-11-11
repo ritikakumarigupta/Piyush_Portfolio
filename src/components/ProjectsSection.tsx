@@ -7,9 +7,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Sparkles,
-  Eye,
   Film,
-  TrendingUp,
   Star,
   CheckCircle2,
   FolderGit2
@@ -435,82 +433,7 @@ export default function ProjectsSection({ videos, onOpenModal }: ProjectsSection
         </div>
 
         {/* =================================================================== */}
-        {/* REQUIREMENT 4: "Uski niche Total View, Video Edit, Average Retention, Reviews" */}
-        {/* =================================================================== */}
-        <div className="mt-10 pt-8 border-t border-white/10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {/* Stat 1: Total Views */}
-            <div className="spotlight-card rounded-2xl p-5 sm:p-6 border border-white/10 relative overflow-hidden bg-gradient-to-br from-neutral-900/60 to-black/80">
-              <div className="moving-card-aura" />
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider font-semibold">
-                  Total Views
-                </span>
-                <Eye className="w-4 h-4 text-emerald-400" />
-              </div>
-              <div className="font-archivo text-2xl sm:text-3xl font-black text-white tracking-tight">
-                12.8M+
-              </div>
-              <span className="text-[11px] font-mono text-neutral-500 mt-1 block">
-                Across YouTube &amp; Reels
-              </span>
-            </div>
-
-            {/* Stat 2: Videos Edited */}
-            <div className="spotlight-card rounded-2xl p-5 sm:p-6 border border-white/10 relative overflow-hidden bg-gradient-to-br from-neutral-900/60 to-black/80">
-              <div className="moving-card-aura" />
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider font-semibold">
-                  Videos Edited
-                </span>
-                <Film className="w-4 h-4 text-cyan-400" />
-              </div>
-              <div className="font-archivo text-2xl sm:text-3xl font-black text-white tracking-tight">
-                50+
-              </div>
-              <span className="text-[11px] font-mono text-neutral-500 mt-1 block">
-                Commercials, VFX &amp; Reels
-              </span>
-            </div>
-
-            {/* Stat 3: Average Retention */}
-            <div className="spotlight-card rounded-2xl p-5 sm:p-6 border border-white/10 relative overflow-hidden bg-gradient-to-br from-neutral-900/60 to-black/80">
-              <div className="moving-card-aura" />
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider font-semibold">
-                  Average Retention
-                </span>
-                <TrendingUp className="w-4 h-4 text-amber-400" />
-              </div>
-              <div className="font-archivo text-2xl sm:text-3xl font-black text-white tracking-tight">
-                84.2%
-              </div>
-              <span className="text-[11px] font-mono text-neutral-500 mt-1 block">
-                High-Pacing Hook Retention
-              </span>
-            </div>
-
-            {/* Stat 4: Client Reviews */}
-            <div className="spotlight-card rounded-2xl p-5 sm:p-6 border border-white/10 relative overflow-hidden bg-gradient-to-br from-neutral-900/60 to-black/80">
-              <div className="moving-card-aura" />
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider font-semibold">
-                  Client Reviews
-                </span>
-                <Star className="w-4 h-4 text-purple-400 fill-purple-400" />
-              </div>
-              <div className="font-archivo text-2xl sm:text-3xl font-black text-white tracking-tight">
-                100%
-              </div>
-              <span className="text-[11px] font-mono text-neutral-500 mt-1 block">
-                5-Star Satisfied Creators
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* =================================================================== */}
-        {/* REQUIREMENT 5: "Add Section by video and integrate it. Don't show it, give me option that i will select it then show video. Matlab ki option rahega jaise: Personal brand, AI Content, VFX, or Upcoming project ka section hona chaiye. Video show nahi hona chaiye jab hum click karege us option pe to uska sara video aana chaiye, har ek video ko alag alag fix karna." */}
+        {/* REQUIREMENT 5: Vault Archive */}
         {/* =================================================================== */}
         <div className="mt-20 pt-16 border-t border-white/10">
           <div className="mb-8">

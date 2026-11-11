@@ -18,7 +18,7 @@ export default function Footer({
   };
 
   return (
-    <footer className="relative bg-[#050508] border-t border-white/10 pt-16 pb-10 overflow-hidden text-neutral-400 font-sans">
+    <footer id="contact" className="relative bg-[#050508] border-t border-white/10 pt-16 pb-10 overflow-hidden text-neutral-400 font-sans">
       {/* Ambient background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-gradient-to-b from-purple-950/20 via-white/[0.02] to-transparent blur-3xl pointer-events-none -z-10" />
 
