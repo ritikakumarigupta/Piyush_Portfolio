@@ -299,3 +299,97 @@
   animation: circleFloatPulse 4s ease-in-out infinite;
 }
 
+/* ==========================================================================
+   OFFICIAL RESUME CLEAN PRINT & EXPORT STYLES
+   Ensures print/save PDF creates a crisp standard document without modal chrome
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
+  }
+
+  html, body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Hide main site layout and interactive controllers */
+  header, 
+  footer, 
+  nav, 
+  #home, 
+  #about, 
+  #skills, 
+  #roadmap, 
+  #projects, 
+  #resume-modal-header,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Reset modal overlay container for printing */
+  #resume-modal-overlay {
+    position: static !important;
+    display: block !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    max-height: none !important;
+    width: 100% !important;
+    height: auto !important;
+    z-index: auto !important;
+  }
+
+  /* Strip all dark cards, borders, rounded boxes and shadows */
+  #resume-modal-card,
+  #printable-resume {
+    position: static !important;
+    display: block !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+  }
+
+  /* Force high-contrast crisp ink colors for paper output */
+  #printable-resume h1,
+  #printable-resume h2,
+  #printable-resume h3,
+  #printable-resume h4,
+  #printable-resume p,
+  #printable-resume span,
+  #printable-resume strong,
+  #printable-resume a,
+  #printable-resume li {
+    color: #000000 !important;
+    background-color: transparent !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  #printable-resume svg {
+    color: #000000 !important;
+    stroke: #000000 !important;
+  }
+
+  /* Prevent page break inside role cards */
+  #printable-resume > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

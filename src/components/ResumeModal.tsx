@@ -58,6 +58,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
 
   return (
     <div 
+      id="resume-modal-overlay"
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl overflow-y-auto animate-fadeIn"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
@@ -66,10 +67,14 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
       {/* Resume Card Container */}
       <div 
         ref={dialogRef}
+        id="resume-modal-card"
         className="relative w-full max-w-4xl bg-[#0D0D10] border border-white/15 rounded-3xl shadow-[0_20px_80px_rgba(0,0,0,0.9)] overflow-hidden my-auto max-h-[92vh] flex flex-col"
       >
         {/* Top Control Header Bar */}
-        <div className="sticky top-0 z-20 flex items-center justify-between px-5 sm:px-8 py-4 bg-[#141418]/95 border-b border-white/10 backdrop-blur-md">
+        <div 
+          id="resume-modal-header"
+          className="sticky top-0 z-20 flex items-center justify-between px-4 sm:px-8 py-3.5 bg-[#141418]/95 border-b border-white/10 backdrop-blur-md"
+        >
           <div className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
             <span className="font-archivo text-xs sm:text-sm font-bold tracking-wider uppercase text-white">
@@ -80,28 +85,42 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
             </span>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Primary Direct PDF Download Action */}
+            <a
+              href="/assets/Piyush_Kumar_Gupta_Resume.pdf"
+              download="Piyush_Kumar_Gupta_Resume.pdf"
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black text-xs font-bold font-mono transition-all duration-200 cursor-pointer shadow-lg shadow-emerald-500/25 active:scale-95"
+              title="Download Original PDF Resume"
+            >
+              <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>Download PDF</span>
+            </a>
+
+            {/* Print Action */}
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-bold font-mono transition-all duration-200 cursor-pointer shadow-md"
-              title="Print or Save as PDF"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-mono transition-all duration-200 cursor-pointer border border-white/10"
+              title="Print Resume"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span className="hidden sm:inline">Print</span>
             </button>
 
+            {/* Share / Copy Action */}
             <button
               onClick={handleCopyContact}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-mono transition-all duration-200 cursor-pointer border border-white/10"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-mono transition-all duration-200 cursor-pointer border border-white/10"
               title="Copy contact info"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span className="hidden sm:inline">{copied ? "Copied!" : "Share"}</span>
+              <span className="hidden md:inline">{copied ? "Copied!" : "Share"}</span>
             </button>
 
+            {/* Close Button */}
             <button
               onClick={onClose}
-              className="p-2 rounded-full bg-neutral-800 hover:bg-white hover:text-black text-neutral-300 transition-all duration-200 cursor-pointer border border-white/10"
+              className="p-1.5 sm:p-2 rounded-full bg-neutral-800 hover:bg-white hover:text-black text-neutral-300 transition-all duration-200 cursor-pointer border border-white/10"
               aria-label="Close Resume Modal"
             >
               <X className="w-4 h-4" />
@@ -110,8 +129,33 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         </div>
 
         {/* Scrollable Printable Resume Sheet */}
-        <div id="printable-resume" className="overflow-y-auto p-6 sm:p-10 space-y-8 text-neutral-200 font-sans print:p-0 print:bg-white print:text-black">
+        <div id="printable-resume" className="overflow-y-auto p-6 sm:p-10 space-y-8 text-neutral-200 font-sans">
           
+          {/* Quick Notice: Original PDF Download banner */}
+          <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3 print:hidden">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-emerald-400/20 flex items-center justify-center text-emerald-400 shrink-0">
+                <FileText className="w-4 h-4" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-white font-archivo">
+                  Original Official PDF Ready
+                </p>
+                <p className="text-[11px] font-mono text-neutral-400">
+                  Direct official copy formatted for HR, recruiters &amp; ATS
+                </p>
+              </div>
+            </div>
+            <a
+              href="/assets/Piyush_Kumar_Gupta_Resume.pdf"
+              download="Piyush_Kumar_Gupta_Resume.pdf"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-black font-archivo text-xs font-black uppercase tracking-wider transition-all duration-200 shadow-md shadow-emerald-500/20 shrink-0"
+            >
+              <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+              Download Official PDF
+            </a>
+          </div>
+
           {/* Header Profile */}
           <div className="border-b border-white/10 pb-6 print:border-black print:pb-4">
             <h1 className="font-archivo text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white print:text-black">

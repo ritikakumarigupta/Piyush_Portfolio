@@ -5,6 +5,8 @@ import Link from "next/link";
 import { 
   ArrowLeft, 
   Printer, 
+  Download,
+  FileText,
   Share2, 
   Check, 
   Mail, 
@@ -33,36 +35,70 @@ export default function ResumePage() {
     <div className="min-h-screen bg-[#0A0A0A] text-neutral-200 py-10 px-4 sm:px-6 lg:px-8 selection:bg-white selection:text-black print:p-0 print:bg-white print:text-black">
       
       {/* Top Navbar */}
-      <div className="max-w-4xl mx-auto mb-8 flex items-center justify-between print:hidden">
+      <div className="max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:hidden">
         <Link 
           href="/"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-white/10 hover:border-white/30 text-xs font-mono text-neutral-300 hover:text-white transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-white/10 hover:border-white/30 text-xs font-mono text-neutral-300 hover:text-white transition-all w-fit"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Portfolio</span>
         </Link>
 
-        <div className="flex items-center gap-2.5">
-          <button
-            onClick={handleCopyContact}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-neutral-900 border border-white/10 hover:border-white/30 text-xs font-mono text-neutral-300 hover:text-white transition-all cursor-pointer"
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+          <a
+            href="/assets/Piyush_Kumar_Gupta_Resume.pdf"
+            download="Piyush_Kumar_Gupta_Resume.pdf"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-bold text-xs font-mono transition-all cursor-pointer shadow-lg shadow-emerald-500/25 active:scale-95"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-            <span>{copied ? "Copied!" : "Share Contact"}</span>
-          </button>
+            <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>Download Official PDF</span>
+          </a>
 
           <button
             onClick={handlePrint}
-            className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-white text-black font-bold text-xs font-mono hover:bg-neutral-200 transition-all cursor-pointer shadow-lg shadow-white/10"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-neutral-900 border border-white/10 hover:border-white/30 text-neutral-300 hover:text-white text-xs font-mono transition-all cursor-pointer"
           >
             <Printer className="w-3.5 h-3.5" />
-            <span>Print / Save PDF</span>
+            <span>Print</span>
+          </button>
+
+          <button
+            onClick={handleCopyContact}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-neutral-900 border border-white/10 hover:border-white/30 text-xs font-mono text-neutral-300 hover:text-white transition-all cursor-pointer"
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+            <span>{copied ? "Copied!" : "Share Contact"}</span>
           </button>
         </div>
       </div>
 
       {/* Main Resume Paper */}
-      <div className="max-w-4xl mx-auto bg-[#0E0E12] border border-white/15 rounded-3xl p-6 sm:p-12 space-y-8 shadow-2xl print:border-none print:shadow-none print:p-0 print:bg-white print:text-black">
+      <div id="printable-resume" className="max-w-4xl mx-auto bg-[#0E0E12] border border-white/15 rounded-3xl p-6 sm:p-12 space-y-8 shadow-2xl print:border-none print:shadow-none print:p-0 print:bg-white print:text-black">
+        
+        {/* Quick Notice: Original PDF Download banner */}
+        <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3 print:hidden">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-emerald-400/20 flex items-center justify-center text-emerald-400 shrink-0">
+              <FileText className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-xs font-bold text-white font-archivo">
+                Official Verified PDF Resume
+              </p>
+              <p className="text-[11px] font-mono text-neutral-400">
+                Exact original formatted PDF document for HR &amp; ATS systems
+              </p>
+            </div>
+          </div>
+          <a
+            href="/assets/Piyush_Kumar_Gupta_Resume.pdf"
+            download="Piyush_Kumar_Gupta_Resume.pdf"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-black font-archivo text-xs font-black uppercase tracking-wider transition-all duration-200 shadow-md shadow-emerald-500/20 shrink-0"
+          >
+            <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+            Download Original PDF
+          </a>
+        </div>
         
         {/* Header Profile */}
         <div className="border-b border-white/10 pb-6 print:border-black print:pb-4">
