@@ -12,6 +12,7 @@ import BloomFXController from "@/components/BloomFXController";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import CinematicIntroPreloader from "@/components/CinematicIntroPreloader";
+import ResumeModal from "@/components/ResumeModal";
 import { VideoProject, StudioSettings } from "@/lib/db";
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
   const [videos, setVideos] = useState<VideoProject[]>([]);
   const [settings, setSettings] = useState<StudioSettings | null>(null);
   const [activeModalVideo, setActiveModalVideo] = useState<VideoProject | null>(null);
+  const [showResumeModal, setShowResumeModal] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -67,6 +69,22 @@ export default function HomePage() {
     };
   }, []);
 
+  // Listen for #resume hash to open modal
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.location.hash === "#resume") {
+        setShowResumeModal(true);
+      }
+      const handleHash = () => {
+        if (window.location.hash === "#resume") {
+          setShowResumeModal(true);
+        }
+      };
+      window.addEventListener("hashchange", handleHash);
+      return () => window.removeEventListener("hashchange", handleHash);
+    }
+  }, []);
+
   const logoUrl = "/assets/piyush-avatar-2026.png";
 
   return (
@@ -79,13 +97,17 @@ export default function HomePage() {
         <CinematicIntroPreloader onComplete={() => setShowPreloader(false)} />
       )}
 
-      {/* 1) Fixed Navbar with Prominent Logo */}
-      <Navbar logoUrl={logoUrl} />
+      {/* 1) Fixed Navbar with Prominent Logo & Resume Button */}
+      <Navbar 
+        logoUrl={logoUrl} 
+        onResumeClick={() => setShowResumeModal(true)} 
+      />
 
-      {/* 2) Hero Section with Full-Bleed Desaturated Portrait & White Light Bloom */}
+      {/* 2) Hero Section with Full-Bleed Desaturated Portrait, White Light Bloom & Resume Action */}
       <HeroSection
         portraitDarkUrl="/assets/portrait-hero-dark.jpg"
         portraitTransparentUrl="/assets/portrait-hero-transparent.png"
+        onResumeClick={() => setShowResumeModal(true)}
       />
 
       {/* 3) About Section: System Profile, Framed Portrait with White Bloom, 3 Stat Cards, Karmayogi Studio Block */}
@@ -122,6 +144,12 @@ export default function HomePage() {
           logoUrl={logoUrl}
         />
       )}
+
+      {/* Luxury Interactive Resume Modal */}
+      <ResumeModal
+        isOpen={showResumeModal}
+        onClose={() => setShowResumeModal(false)}
+      />
     </main>
   );
 }

@@ -1,18 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Play, Send, Sparkles, Box } from "lucide-react";
+import { Play, Send, Sparkles, Box, FileText } from "lucide-react";
 import WhiteLightBloom from "./WhiteLightBloom";
 import Hero3DPortrait from "./Hero3DPortrait";
 
 interface HeroSectionProps {
   portraitDarkUrl?: string;
   portraitTransparentUrl?: string;
+  onResumeClick?: () => void;
 }
 
 export default function HeroSection({
   portraitDarkUrl = "/assets/portrait-hero-dark.jpg",
   portraitTransparentUrl = "/assets/portrait-hero-transparent.png",
+  onResumeClick,
 }: HeroSectionProps) {
   const roles = [
     "VIDEO EDITOR & MOTION DESIGNER",
@@ -92,6 +94,13 @@ export default function HeroSection({
                 <Play className="w-3.5 h-3.5 fill-black text-black" />
                 <span>View My Work</span>
               </a>
+              <button
+                onClick={onResumeClick}
+                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl shadow-emerald-500/20 cursor-pointer"
+              >
+                <FileText className="w-3.5 h-3.5 fill-black text-black" />
+                <span>Resume</span>
+              </button>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full border border-neutral-700 bg-neutral-900/60 text-white text-xs font-semibold uppercase tracking-wider hover:border-white hover:bg-neutral-800 transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm"

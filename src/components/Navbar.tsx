@@ -7,9 +7,13 @@ import { Menu, X, FileText } from "lucide-react";
 
 interface NavbarProps {
   logoUrl?: string;
+  onResumeClick?: () => void;
 }
 
-export default function Navbar({ logoUrl = "/assets/piyush-profile-logo.png" }: NavbarProps) {
+export default function Navbar({ 
+  logoUrl = "/assets/piyush-profile-logo.png",
+  onResumeClick 
+}: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -94,14 +98,14 @@ export default function Navbar({ logoUrl = "/assets/piyush-profile-logo.png" }: 
               <span className="xl:hidden">Available</span>
             </div>
 
-            {/* Dispatch Form Button */}
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black text-xs font-bold uppercase tracking-wider hover:bg-neutral-200 transition-all duration-200 hover:scale-[1.03] shadow-lg shadow-white/10"
+            {/* Resume Button */}
+            <button
+              onClick={onResumeClick}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:scale-[1.03] shadow-lg shadow-emerald-500/20 cursor-pointer"
             >
-              <FileText className="w-3.5 h-3.5 text-black" />
-              <span>Dispatch</span>
-            </a>
+              <FileText className="w-3.5 h-3.5 fill-black text-black" />
+              <span>Resume</span>
+            </button>
 
             {/* Admin CMS Button */}
             <Link
@@ -139,13 +143,16 @@ export default function Navbar({ logoUrl = "/assets/piyush-profile-logo.png" }: 
             </a>
           ))}
           <div className="pt-4 flex flex-col gap-3">
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (onResumeClick) onResumeClick();
+              }}
+              className="w-full text-center py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg"
             >
-              Dispatch / Enquiry Form
-            </a>
+              <FileText className="w-3.5 h-3.5 fill-black text-black" />
+              <span>View Official Resume</span>
+            </button>
             <Link
               href="/admin"
               onClick={() => setMobileMenuOpen(false)}
