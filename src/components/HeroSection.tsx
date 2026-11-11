@@ -17,7 +17,7 @@ export default function HeroSection({
   const roles = [
     "VIDEO EDITOR & MOTION DESIGNER",
     "AI VIDEO CREATOR",
-    "CREATIVE VISUAL DEVELOPER",
+    "CREATIVE VISUAL",
   ];
 
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -77,14 +77,6 @@ export default function HeroSection({
                 {roles[currentRoleIndex]}
               </h1>
             </div>
-
-            {/* Bio statement */}
-            <p className="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-lg">
-              3+ years turning raw footage and half-formed ideas into videos
-              people actually watch till the end. Cutting, coloring, and animating
-              across DaVinci Resolve, Premiere Pro, and After Effects with modern AI workflows.
-            </p>
-
             <div className="flex items-center gap-3 text-xs font-mono text-neutral-500">
               <span className="text-neutral-300">// BASED IN INDIA</span>
               <span>•</span>

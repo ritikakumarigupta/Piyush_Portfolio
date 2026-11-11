@@ -31,23 +31,6 @@ export default function AboutSection({
     setTilt({ x: 0, y: 0 });
     setIsHovered(false);
   };
-  const statCards = [
-    {
-      topLabel: "Full-Stack",
-      bottomLabel: "ARCHITECTURE",
-      subtext: "Post-Production",
-    },
-    {
-      topLabel: "DaVinci & Adobe",
-      bottomLabel: "CORE SUITE",
-      subtext: "Color & Motion",
-    },
-    {
-      topLabel: "AI Cinema",
-      bottomLabel: "WORKFLOW",
-      subtext: "Runway & Neural",
-    },
-  ];
 
   return (
     <section id="about" className="relative py-24 sm:py-32 bg-[#0A0A0A] overflow-hidden">
@@ -161,27 +144,6 @@ export default function AboutSection({
                   make every frame earn its place.
                 </em>
               </p>
-            </div>
-
-            {/* 3 Small Dark Pill/Stat Cards in a Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              {statCards.map((card, idx) => (
-                <div
-                  key={idx}
-                  className="spotlight-card rounded-2xl p-4 flex flex-col justify-center border border-white/5 hover:border-white/20 transition-all group relative overflow-visible"
-                >
-                  <div className="moving-card-aura" />
-                  <span className="text-xs font-mono text-neutral-400 tracking-wider uppercase mb-1">
-                    {card.topLabel}
-                  </span>
-                  <span className="font-archivo text-base sm:text-lg font-bold uppercase tracking-tight text-white group-hover:text-emerald-400 transition-colors">
-                    {card.bottomLabel}
-                  </span>
-                  <span className="text-[11px] font-mono text-neutral-500 mt-1">
-                    // {card.subtext}
-                  </span>
-                </div>
-              ))}
             </div>
           </div>
         </div>

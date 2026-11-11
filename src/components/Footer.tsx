@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUp, Instagram, Linkedin, Youtube, Mail, MessageSquare, Sparkles } from "lucide-react";
+import { ArrowUp, Mail, MessageSquare } from "lucide-react";
 
 interface FooterProps {
   logoUrl?: string;
@@ -41,15 +41,12 @@ export default function Footer({
               <div>
                 <div className="flex flex-wrap items-center gap-2.5">
                   <span className="font-archivo text-lg sm:text-xl font-black text-white tracking-tight block">
-                    KARMAYOG STUDIO
+                    Piyush kumar Gupta
                   </span>
                   <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-mono text-emerald-300 uppercase font-bold tracking-wider">
                     // DIRECT CONTACT &amp; CONNECT
                   </span>
                 </div>
-                <span className="text-[10px] font-mono tracking-widest text-amber-400 uppercase font-bold block mt-0.5">
-                  Karmayog Production House
-                </span>
               </div>
             </div>
 
@@ -96,37 +93,7 @@ export default function Footer({
               </a>
             </div>
 
-            <div className="flex items-center justify-between pt-1">
-              <div className="flex items-center gap-2">
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white/40 transition-all hover:scale-105"
-                  title="YouTube"
-                >
-                  <Youtube className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white/40 transition-all hover:scale-105"
-                  title="Instagram"
-                >
-                  <Instagram className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white/40 transition-all hover:scale-105"
-                  title="LinkedIn"
-                >
-                  <Linkedin className="w-3.5 h-3.5" />
-                </a>
-              </div>
-
+            <div className="flex items-center justify-end pt-1">
               <Link
                 href="/admin"
                 className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400 hover:text-emerald-400 underline underline-offset-4 transition-colors"
@@ -140,19 +107,8 @@ export default function Footer({
         </div>
 
         {/* Middle Metadata Columns (Matching User Screenshot Layout Exactly) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 pb-6 text-xs font-mono">
-          
-          {/* Column 1: Production Discipline */}
-          <div className="space-y-1">
-            <span className="text-neutral-500 uppercase tracking-widest font-semibold block text-[10px]">
-              // Production Disciplines
-            </span>
-            <p className="text-neutral-300 font-medium leading-relaxed">
-              Cinematic Video Editing<br />
-              Motion Graphics &amp; VFX<br />
-              AI Neural Video Direction
-            </p>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-10 pb-6 text-xs font-mono">
+
 
           {/* Column 2: Status */}
           <div className="space-y-1 sm:text-center">

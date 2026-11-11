@@ -50,7 +50,7 @@ export default function Navbar({ logoUrl = "/assets/karmayogi-logo.svg" }: Navba
             <div className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-full overflow-hidden border border-amber-400/50 shadow-[0_0_20px_rgba(212,175,55,0.5)] flex-shrink-0 bg-black">
               <Image
                 src={logoUrl || "/assets/karmayogi-gold-logo.jpg"}
-                alt="Karmayog Studio"
+                alt="Piyush Kumar Gupta"
                 fill
                 priority
                 className="object-cover"
@@ -60,10 +60,7 @@ export default function Navbar({ logoUrl = "/assets/karmayogi-logo.svg" }: Navba
             {/* Wordmark */}
             <div className="flex flex-col">
               <span className="font-archivo text-base sm:text-lg font-black tracking-wider text-white leading-tight">
-                KARMAYOG
-              </span>
-              <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-amber-400 uppercase font-bold">
-                PRODUCTION HOUSE
+                PIYUSH KUMAR GUPTA
               </span>
               <span className="text-[7px] sm:text-[8px] font-mono tracking-tight text-amber-200/80 uppercase mt-0.5 hidden sm:block">
                 Video Editing • VFX • Story Telling • AI Creator

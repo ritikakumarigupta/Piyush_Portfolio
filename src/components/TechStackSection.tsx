@@ -1,34 +1,30 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
-
 export default function TechStackSection() {
   const row1Skills = [
     { name: "DaVinci Resolve", category: "Color & NLE", hot: true },
     { name: "Adobe Premiere Pro", category: "Editing", hot: true },
     { name: "After Effects", category: "Motion & VFX", hot: true },
     { name: "Photoshop", category: "Asset Prep", hot: false },
-    { name: "Blender 3D", category: "Modeling", hot: false },
-    { name: "Cinema 4D", category: "3D Motion", hot: false },
     { name: "Color Grading (LUTs)", category: "Post-Production", hot: true },
     { name: "Sound Design & Mix", category: "Fairlight/Audition", hot: false },
     { name: "Kinetic Typography", category: "Animation", hot: false },
     { name: "Final Cut Pro", category: "Cutting", hot: false },
-    { name: "Unreal Engine 5", category: "Virtual Cinema", hot: false },
+    { name: "Google Flow", category: "AI Video Studio", hot: true },
+    { name: "Higgsfield", category: "AI Cinema", hot: true },
+     { name: "Google Veo", category: "AI Video", hot: true },
   ];
 
   const row2Skills = [
     { name: "Runway Gen-3 Alpha", category: "AI Video", hot: true },
-    { name: "Midjourney v6", category: "Concept Art", hot: true },
     { name: "OpenAI Sora", category: "Synthetic", hot: true },
-    { name: "Pika Labs", category: "Generative", hot: false },
     { name: "Topaz Video AI (4K)", category: "Neural Upscale", hot: true },
     { name: "ElevenLabs Voice AI", category: "Audio Synthesis", hot: false },
-    { name: "ComfyUI & SDXL", category: "Neural Control", hot: true },
     { name: "CapCut Pro", category: "Short Form & Reels", hot: true },
-    { name: "Boris FX Mocha", category: "Planar Tracking", hot: false },
-    { name: "Luma Dream Machine", category: "Camera Motion", hot: true },
     { name: "Kling AI", category: "Cinematic Gen", hot: true },
+    { name: "InVideo", category: "AI Video Editing", hot: false },
+    { name: "OpenArt", category: "AI Image & Video", hot: true },
+    { name: "Google Gemini", category: "AI Assistant", hot: true },
   ];
 
   return (

@@ -573,7 +573,7 @@ export default function ProjectsSection({ videos, onOpenModal }: ProjectsSection
           </div>
 
           {/* Dynamic Video Display: Only shows videos when a category option is clicked */}
-          {selectedCategory ? (
+          {selectedCategory && (
             <div className="p-6 sm:p-8 rounded-3xl bg-black/70 border border-white/15 relative overflow-hidden">
               {/* Category Active Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4">
@@ -668,16 +668,6 @@ export default function ProjectsSection({ videos, onOpenModal }: ProjectsSection
                   </p>
                 </div>
               )}
-            </div>
-          ) : (
-            <div className="p-8 sm:p-12 rounded-3xl bg-neutral-950/40 border border-dashed border-white/10 text-center flex flex-col items-center justify-center">
-              <Sparkles className="w-8 h-8 text-neutral-500 mb-3" />
-              <h5 className="font-archivo text-lg sm:text-xl font-bold uppercase text-neutral-300">
-                Category Vault Is In Idle State
-              </h5>
-              <p className="text-xs sm:text-sm text-neutral-500 max-w-md mt-1">
-                Click any of the 4 options above (Personal Brand, AI Content, VFX, or Upcoming Project) to dynamically load its curated video library.
-              </p>
             </div>
           )}
         </div>
