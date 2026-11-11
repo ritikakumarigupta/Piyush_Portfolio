@@ -123,7 +123,6 @@ export default function CinematicIntroPreloader({ onComplete }: CinematicIntroPr
           </p>
           <p className="text-white font-extrabold text-2xl sm:text-4xl md:text-5xl tracking-tight italic flex items-center justify-center gap-2 sm:gap-3 drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)]">
             <span>Portfolio gets you hired.</span>
-            <span className="inline-block text-2xl sm:text-4xl not-italic filter drop-shadow">💼🔥</span>
           </p>
         </div>
 

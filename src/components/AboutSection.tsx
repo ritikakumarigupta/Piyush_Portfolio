@@ -121,7 +121,7 @@ export default function AboutSection({
              <span className="text-5xl  text-white sm:text-5xl">Piyush Kumar Gupta</span>
               </h2>
               <p className="text-base sm:text-lg text-neutral-200 leading-relaxed font-normal">
-                3+ years turning raw footage and half-formed ideas into videos
+                2+ years turning raw footage and half-formed ideas into videos
                 people actually watch till the end. I cut, color, and animate
                 across <strong className="text-white font-semibold">DaVinci Resolve</strong>,{" "}
                 <strong className="text-white font-semibold">Premiere Pro</strong>, and{" "}
