@@ -44,10 +44,32 @@ export default function FullscreenVideoModal({
   const [playbackRate, setPlaybackRate] = useState(1.0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showUnmuteHint, setShowUnmuteHint] = useState(false);
-  const [isBuffering, setIsBuffering] = useState(true);
+  const [isBuffering, setIsBuffering] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const bufferTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleWaiting = () => {
+    if (bufferTimeoutRef.current) clearTimeout(bufferTimeoutRef.current);
+    bufferTimeoutRef.current = setTimeout(() => {
+      setIsBuffering(true);
+    }, 400);
+  };
+
+  const handleClearBuffering = () => {
+    if (bufferTimeoutRef.current) {
+      clearTimeout(bufferTimeoutRef.current);
+      bufferTimeoutRef.current = null;
+    }
+    setIsBuffering(false);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (bufferTimeoutRef.current) clearTimeout(bufferTimeoutRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -86,7 +108,7 @@ export default function FullscreenVideoModal({
     vid.currentTime = 0;
     vid.playbackRate = playbackRate;
     vid.volume = 1;
-    setIsBuffering(true);
+    handleClearBuffering();
 
     // Try unmuted play first
     vid.muted = false;
@@ -96,7 +118,7 @@ export default function FullscreenVideoModal({
         .then(() => {
           setIsPlaying(true);
           setIsMuted(false);
-          setIsBuffering(false);
+          handleClearBuffering();
           setShowUnmuteHint(false);
         })
         .catch(() => {
@@ -107,11 +129,11 @@ export default function FullscreenVideoModal({
           vid.play()
             .then(() => {
               setIsPlaying(true);
-              setIsBuffering(false);
+              handleClearBuffering();
             })
             .catch(() => {
               setIsPlaying(false);
-              setIsBuffering(false);
+              handleClearBuffering();
             });
         });
     }
@@ -321,20 +343,25 @@ export default function FullscreenVideoModal({
             playsInline
             webkit-playsinline="true"
             x5-playsinline="true"
-            preload="auto"
+            preload="metadata"
             loop
             onTimeUpdate={handleTimeUpdate}
             onPlay={() => {
               setIsPlaying(true);
-              setIsBuffering(false);
+              handleClearBuffering();
             }}
-            onPause={() => setIsPlaying(false)}
-            onWaiting={() => setIsBuffering(true)}
+            onPause={() => {
+              setIsPlaying(false);
+              handleClearBuffering();
+            }}
+            onWaiting={handleWaiting}
             onPlaying={() => {
               setIsPlaying(true);
-              setIsBuffering(false);
+              handleClearBuffering();
             }}
-            onCanPlay={() => setIsBuffering(false)}
+            onCanPlay={handleClearBuffering}
+            onCanPlayThrough={handleClearBuffering}
+            onLoadedData={handleClearBuffering}
             onVolumeChange={() => {
               if (videoRef.current) setIsMuted(videoRef.current.muted);
             }}
@@ -342,18 +369,17 @@ export default function FullscreenVideoModal({
             className="w-full max-h-[75vh] object-contain cursor-pointer bg-black"
           />
 
-          {/* Buffering Indicator */}
-          {isBuffering && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm z-30 pointer-events-none">
-              <Loader2 className="w-12 h-12 text-emerald-400 animate-spin mb-2" />
-              <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-widest">
-                Buffering Cinema Stream...
-              </span>
+          {/* Subtle Buffering Indicator (only if video playback is genuinely stalled) */}
+          {isBuffering && isPlaying && (
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30 flex items-center justify-center">
+              <div className="p-3.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 shadow-2xl">
+                <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
+              </div>
             </div>
           )}
 
           {/* Large Center Play Button if paused */}
-          {!isPlaying && !isBuffering && (
+          {!isPlaying && (
             <button
               onClick={handleVideoClick}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-7 py-3.5 rounded-full bg-white text-black font-black font-mono text-xs sm:text-sm flex items-center gap-2.5 shadow-[0_0_35px_rgba(255,255,255,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 transition-all z-40 border-2 border-emerald-400 cursor-pointer animate-pulse"
