@@ -323,6 +323,330 @@
       "duration": "0:42",
       "featured": true,
       "createdAt": "2026-11-20T05:29:59.636Z"
+    },
+    {
+      "id": "vid-ai-1",
+      "title": "Aurabella AI Luxury Skincare Commercial",
+      "category": "AI Content",
+      "categoryBadge": "AI & COMMERCIAL CINEMA",
+      "description": "Cinematic cosmetic commercial combining neural macro water simulations, hyper-realistic skin textures, and AI visual pacing.",
+      "videoUrl": "/uploads/videos/ai_aurabella_brand_launch.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_aurabella_brand_launch.jpg",
+      "tools": [
+        "Runway Gen-3",
+        "Midjourney",
+        "Premiere Pro",
+        "DaVinci Resolve"
+      ],
+      "tags": [
+        "Runway Gen-3",
+        "Midjourney",
+        "AI Cinema",
+        "Macro Textures"
+      ],
+      "order": 13,
+      "status": "published",
+      "views": "1.8M+",
+      "duration": "0:45",
+      "featured": true,
+      "createdAt": "2026-11-20T06:19:46.468Z"
+    },
+    {
+      "id": "vid-ai-2",
+      "title": "The Bald Lion — AI Character Reel",
+      "category": "AI Content",
+      "categoryBadge": "SYNTHETIC CHARACTER VFX",
+      "description": "Expressive AI character animation study featuring photorealistic lion anatomy, dynamic lighting, and punchy rhythmic editing.",
+      "videoUrl": "/uploads/videos/ai_bald_lion_animation.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_bald_lion_animation.jpg",
+      "tools": [
+        "Midjourney",
+        "Luma Dream Machine",
+        "Topaz Video AI",
+        "After Effects"
+      ],
+      "tags": [
+        "Luma Dream Machine",
+        "Topaz Video AI",
+        "Character VFX",
+        "Kinetic Cut"
+      ],
+      "order": 14,
+      "status": "published",
+      "views": "2.1M+",
+      "duration": "0:32",
+      "featured": true,
+      "createdAt": "2026-11-20T06:19:53.249Z"
+    },
+    {
+      "id": "vid-ai-3",
+      "title": "Age Transformation Neural VFX Reel",
+      "category": "AI Content",
+      "categoryBadge": "NEURAL FACE MORPH",
+      "description": "Seamless age progression visual effects showcasing subtle facial morphing, skin texture aging, and color science grading.",
+      "videoUrl": "/uploads/videos/ai_facial_age_transformation.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_facial_age_transformation.jpg",
+      "tools": [
+        "ComfyUI",
+        "Runway Gen-3",
+        "After Effects",
+        "DaVinci Resolve"
+      ],
+      "tags": [
+        "ComfyUI",
+        "Neural Face",
+        "Age Morph",
+        "Visual Effects"
+      ],
+      "order": 15,
+      "status": "published",
+      "views": "3.2M+",
+      "duration": "0:28",
+      "featured": true,
+      "createdAt": "2026-11-20T06:19:56.979Z"
+    },
+    {
+      "id": "vid-ai-4",
+      "title": "Mahadev Shiv Celestial AI Visuals",
+      "category": "AI Content",
+      "categoryBadge": "3D & MYTHOLOGY CINEMA",
+      "description": "Mythological celestial concept video featuring cosmic smoke simulations, divine particle glows, and majestic cinematic sound design.",
+      "videoUrl": "/uploads/videos/ai_shiv_mythological_cinema.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_shiv_mythological_cinema.jpg",
+      "tools": [
+        "Midjourney",
+        "Kling AI",
+        "Blender 3D",
+        "After Effects"
+      ],
+      "tags": [
+        "Mythology",
+        "Cosmic Smoke",
+        "Kling AI",
+        "Cinematic Grade"
+      ],
+      "order": 16,
+      "status": "published",
+      "views": "4.1M+",
+      "duration": "0:40",
+      "featured": true,
+      "createdAt": "2026-11-20T06:20:00.650Z"
+    },
+    {
+      "id": "vid-ai-5",
+      "title": "Siwon Premium AI Product Commercial",
+      "category": "AI Content",
+      "categoryBadge": "AI 3D PRODUCT COMMERCIAL",
+      "description": "Minimalist luxury product commercial with fluid infinity-loop motion graphics, golden particle embers, and premium typographic hierarchy.",
+      "videoUrl": "/uploads/videos/ai_siwon_bottle_reveal.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_siwon_bottle_reveal.jpg",
+      "tools": [
+        "Cinema 4D",
+        "Runway Gen-3",
+        "After Effects",
+        "ACES Color"
+      ],
+      "tags": [
+        "Product 3D",
+        "Liquid Dynamics",
+        "Runway Gen-3",
+        "Luxury Brand"
+      ],
+      "order": 17,
+      "status": "published",
+      "views": "1.9M+",
+      "duration": "0:50",
+      "featured": true,
+      "createdAt": "2026-11-20T06:20:06.112Z"
+    },
+    {
+      "id": "vid-ai-6",
+      "title": "Siwon Glow Bulb Illumination Commercial",
+      "category": "AI Content",
+      "categoryBadge": "AI LIGHTING & COMMERCIAL",
+      "description": "Atmospheric product lighting study with neon refraction, macro lens flare, and rhythmic electronic soundtrack.",
+      "videoUrl": "/uploads/videos/ai_siwon_bulb_commercial.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_siwon_bulb_commercial.jpg",
+      "tools": [
+        "Runway Gen-3",
+        "After Effects",
+        "Premiere Pro",
+        "Color Grade"
+      ],
+      "tags": [
+        "Macro Flare",
+        "Neon Refraction",
+        "Lighting Study",
+        "Reel Edit"
+      ],
+      "order": 18,
+      "status": "published",
+      "views": "850K+",
+      "duration": "0:24",
+      "featured": false,
+      "createdAt": "2026-11-20T06:20:08.613Z"
+    },
+    {
+      "id": "vid-ai-7",
+      "title": "Metabolic Anatomy & Health 3D Visual",
+      "category": "AI Content",
+      "categoryBadge": "3D MEDICAL & HEALTH VISUAL",
+      "description": "Hyper-detailed anatomical medical visualization showcasing cellular metabolism and fat breakdown dynamics.",
+      "videoUrl": "/uploads/videos/ai_fitness_fat_burn_science.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_fitness_fat_burn_science.jpg",
+      "tools": [
+        "Blender 3D",
+        "ComfyUI",
+        "After Effects",
+        "Sound Design"
+      ],
+      "tags": [
+        "Medical 3D",
+        "Anatomy",
+        "Educational Visual",
+        "Sound FX"
+      ],
+      "order": 19,
+      "status": "published",
+      "views": "1.3M+",
+      "duration": "0:22",
+      "featured": false,
+      "createdAt": "2026-11-20T06:20:11.897Z"
+    },
+    {
+      "id": "vid-ai-8",
+      "title": "Swion Luxury Product Reveal Sequence",
+      "category": "AI Content",
+      "categoryBadge": "VIRAL REVEAL & COMMERCIAL",
+      "description": "High-octane product reveal with volumetric lighting, water droplet collision physics, and 4K export.",
+      "videoUrl": "/uploads/videos/ai_swion_product_reveal.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_swion_product_reveal.jpg",
+      "tools": [
+        "After Effects",
+        "Blender 3D",
+        "Premiere Pro",
+        "DaVinci Resolve"
+      ],
+      "tags": [
+        "Volumetric Light",
+        "Water Collision",
+        "Product Launch",
+        "Kinetic Cut"
+      ],
+      "order": 20,
+      "status": "published",
+      "views": "2.7M+",
+      "duration": "0:48",
+      "featured": true,
+      "createdAt": "2026-11-20T06:20:15.641Z"
+    },
+    {
+      "id": "vid-ai-9",
+      "title": "Next-Gen AI Skincare Macro Commercial",
+      "category": "AI Content",
+      "categoryBadge": "PROMPT-BASED CINEMA",
+      "description": "Prompt-driven photorealistic skincare commercial crafted with state-of-the-art generative video model architectures.",
+      "videoUrl": "/uploads/videos/ai_luxury_skincare_mvp.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_luxury_skincare_mvp.jpg",
+      "tools": [
+        "Google Veo",
+        "Midjourney",
+        "Premiere Pro",
+        "Color Science"
+      ],
+      "tags": [
+        "Prompt Cinema",
+        "Google Veo",
+        "Photorealistic",
+        "Aesthetic"
+      ],
+      "order": 21,
+      "status": "published",
+      "views": "920K+",
+      "duration": "0:15",
+      "featured": false,
+      "createdAt": "2026-11-20T06:20:16.539Z"
+    },
+    {
+      "id": "vid-ai-10",
+      "title": "Botanical Serum Synthetic Advertisement",
+      "category": "AI Content",
+      "categoryBadge": "AI PRODUCT SPOT",
+      "description": "Synthetic advertisement combining organic plant life, serum droplets, and soft diffuse ambient lighting.",
+      "videoUrl": "/uploads/videos/ai_skincare_ad_mvp.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_skincare_ad_mvp.jpg",
+      "tools": [
+        "Runway Gen-3",
+        "Midjourney",
+        "After Effects",
+        "ACES Grade"
+      ],
+      "tags": [
+        "Organic Plant Life",
+        "Liquid Serum",
+        "Diffuse Light",
+        "Commercial"
+      ],
+      "order": 22,
+      "status": "published",
+      "views": "1.1M+",
+      "duration": "0:15",
+      "featured": false,
+      "createdAt": "2026-11-20T06:20:18.381Z"
+    },
+    {
+      "id": "vid-ai-11",
+      "title": "Smart Tech Aesthetic Commercial",
+      "category": "AI Content",
+      "categoryBadge": "AI TECH COMMERCIAL",
+      "description": "Futuristic tech device visualization featuring clean industrial design and holographic UI elements.",
+      "videoUrl": "/uploads/videos/ai_smart_gadget_commercial.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_smart_gadget_commercial.jpg",
+      "tools": [
+        "Kling AI",
+        "Midjourney",
+        "After Effects",
+        "Sound Design"
+      ],
+      "tags": [
+        "Tech Commercial",
+        "Industrial Design",
+        "Holographic UI",
+        "Kling AI"
+      ],
+      "order": 23,
+      "status": "published",
+      "views": "640K+",
+      "duration": "0:12",
+      "featured": false,
+      "createdAt": "2026-11-20T06:20:19.963Z"
+    },
+    {
+      "id": "vid-ai-12",
+      "title": "UGC Style Brand Conversion Ad",
+      "category": "AI Content",
+      "categoryBadge": "UGC & CONVERSION AD",
+      "description": "High-converting UGC video ad structured for paid meta advertising with strong visual hooks and captioning.",
+      "videoUrl": "/uploads/videos/ai_siwon_ugc_commercial.mp4",
+      "thumbnailUrl": "/uploads/thumbnails/ai_siwon_ugc_commercial.jpg",
+      "tools": [
+        "CapCut Pro",
+        "Premiere Pro",
+        "Kinetic Hook",
+        "Voiceover Mix"
+      ],
+      "tags": [
+        "UGC Ad",
+        "Meta Ads",
+        "Paid Social",
+        "High Conversion"
+      ],
+      "order": 24,
+      "status": "published",
+      "views": "890K+",
+      "duration": "0:18",
+      "featured": false,
+      "createdAt": "2026-11-20T06:20:21.914Z"
     }
   ],
   "enquiries": [],
